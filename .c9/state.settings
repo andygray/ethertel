@@ -1,7 +1,18 @@
 {
+    "ace": {
+        "search": {
+            "@backwards": "false",
+            "@highlightmatches": "true",
+            "@matchcase": "false",
+            "@preservecase": "false",
+            "@regex": "false",
+            "@wholeword": "false",
+            "@wraparound": "true"
+        }
+    },
     "console": {
         "@expanded": true,
-        "@height": 298,
+        "@height": 180,
         "@maximized": "false",
         "json()": {
             "meta": {
@@ -29,8 +40,8 @@
                         "terminal": {
                             "id": "devel_849",
                             "cwd": "",
-                            "width": 866,
-                            "height": 272
+                            "width": 1203,
+                            "height": 154
                         }
                     },
                     "editorType": "terminal",
@@ -68,7 +79,7 @@
             "@ace": 1,
             "@acestatus": 1,
             "@divider": 4,
-            "@document": 4,
+            "@document": 5,
             "@ethereum-console": 1,
             "@form": 5,
             "@immediate": 1,
@@ -76,10 +87,10 @@
             "@menuitem": 13,
             "@pane": 2,
             "@preferences": 1,
-            "@session": 4,
-            "@tab": 8,
+            "@session": 5,
+            "@tab": 4,
             "@tree": 2,
-            "@undoManager": 4,
+            "@undoManager": 5,
             "@welcome": 1
         }
     },
@@ -98,12 +109,12 @@
     "panecycle": {
         "json()": [
             "tab1",
-            "tab6"
+            "tab0"
         ]
     },
     "panels": {
         "@active-left": "tree",
-        "@active-right": "ethergit.ethereum.sandbox.panel",
+        "@active-right": "none",
         "collab": {
             "@enabled": "true",
             "@name": "collab"
@@ -144,35 +155,50 @@
                 "/",
                 "/dapp",
                 "/dapp/contracts",
-                "/dapp/_pre"
+                "/dapp/_pre",
+                "/app/abi",
+                "/app/css",
+                "/app/js",
+                "/app/js/constants",
+                "/app/js/controllers",
+                "/app/js/services",
+                "/app/template"
             ]
         }
     },
     "recentfiles": {
         "json()": []
     },
+    "search-history": {
+        "search": {
+            "json()": [
+                "destinations"
+            ]
+        }
+    },
     "tabs": {
         "json()": {
             "focus": "tab1",
             "meta": {
                 "accessList": [
-                    "tab6",
-                    "tab7"
+                    "tab0",
+                    "tab2",
+                    "tab3"
                 ]
             },
             "name": "pane0",
             "nodes": [
                 {
                     "type": "tab",
-                    "name": "tab6",
+                    "name": "tab0",
                     "path": "/dapp/contracts/RateEx.sol",
                     "className": [
-                        "tab6"
+                        "tab0"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1449058099546
+                            "timestamp": 1449076911722
                         },
                         "filter": true,
                         "title": "RateEx.sol",
@@ -184,19 +210,39 @@
                 },
                 {
                     "type": "tab",
-                    "name": "tab7",
+                    "name": "tab2",
                     "path": "/dapp/contracts/RateCard.sol",
                     "className": [
-                        "tab7"
+                        "tab2"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1449055936723
+                            "timestamp": 1449064481164
                         },
                         "filter": true,
                         "title": "RateCard.sol",
                         "tooltip": "/dapp/contracts/RateCard.sol",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab3",
+                    "path": "/dapp/contracts/std.sol",
+                    "className": [
+                        "tab3"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1448914431293
+                        },
+                        "filter": true,
+                        "title": "std.sol",
+                        "tooltip": "/dapp/contracts/std.sol",
                         "ace": {}
                     },
                     "editorType": "ace",
@@ -210,7 +256,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/dapp/contracts/RateCard.sol"
+            "/dapp/contracts/RateEx.sol"
         ]
     }
 }

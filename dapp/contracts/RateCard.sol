@@ -7,6 +7,9 @@ contract RateCard is abstract {
     //     uint maxAmountInWei;
     // }
     
+    bytes32 public name;
+    bytes32 public domain;
+    
     mapping (uint => uint) public rates;
     
     event RateInit(address owner);
@@ -21,6 +24,18 @@ contract RateCard is abstract {
       rates[countryCode] =  rateInWei;
       RateAdded(countryCode, rateInWei);
     }
+    
+    function setName(bytes32 pname) {
+        name = pname;
+    }
+    
+    function setDomain(bytes32 pdomain) {
+        domain = pdomain;
+    }
+    
+    // function getBalance() returns (uint bal) {
+    //     return this.balance; 
+    // }
 }
 
 contract RateCardAlpha is RateCard, owned, mortal {
@@ -31,6 +46,9 @@ contract RateCardAlpha is RateCard, owned, mortal {
         addRate(1, 5);
         //india
         addRate(91, 7);
+        
+        setName(0x474c544400000000000000000000000000000000000000000000000000000000);
+        setDomain(0x7369702e676c74642e6e65740000000000000000000000000000000000000000);
    }
 }
 contract RateCardBeta is RateCard, owned, mortal {
@@ -41,5 +59,8 @@ contract RateCardBeta is RateCard, owned, mortal {
         addRate(1, 6);
         //india
         addRate(91, 8);
+        
+        setName(0x58595a0000000000000000000000000000000000000000000000000000000000);
+        setDomain(0x7369702e78797a2e6e6574000000000000000000000000000000000000000000);
    }
 }
