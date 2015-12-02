@@ -1,7 +1,7 @@
 {
     "console": {
         "@expanded": true,
-        "@height": 295,
+        "@height": 309,
         "@maximized": "false",
         "json()": {
             "meta": {
@@ -29,8 +29,8 @@
                         "terminal": {
                             "id": "devel_849",
                             "cwd": "",
-                            "width": 866,
-                            "height": 269
+                            "width": 1266,
+                            "height": 283
                         }
                     },
                     "editorType": "terminal",
@@ -67,18 +67,18 @@
         "counters": {
             "@ace": 1,
             "@acestatus": 1,
-            "@divider": 4,
-            "@document": 7,
+            "@divider": 5,
+            "@document": 9,
             "@ethereum-console": 1,
             "@form": 5,
             "@immediate": 1,
-            "@menu": 5,
-            "@menuitem": 13,
+            "@menu": 7,
+            "@menuitem": 17,
             "@pane": 2,
             "@preferences": 1,
-            "@session": 7,
-            "@tab": 5,
-            "@undoManager": 7,
+            "@session": 9,
+            "@tab": 8,
+            "@undoManager": 9,
             "@welcome": 1
         }
     },
@@ -97,12 +97,12 @@
     "panecycle": {
         "json()": [
             "tab1",
-            "tab4"
+            "tab6"
         ]
     },
     "panels": {
         "@active-left": "tree",
-        "@active-right": "ethergit.ethereum.sandbox.panel",
+        "@active-right": "none",
         "collab": {
             "@enabled": "true",
             "@name": "collab"
@@ -155,10 +155,8 @@
             "focus": "tab1",
             "meta": {
                 "accessList": [
-                    "tab4",
                     "tab6",
-                    "tab2",
-                    "tab0"
+                    "tab7"
                 ]
             },
             "name": "pane0",
@@ -166,96 +164,14 @@
                 {
                     "type": "tab",
                     "name": "tab6",
-                    "path": "/dapp/contracts/RateCard.sol",
+                    "path": "/dapp/contracts/RateEx.sol",
                     "className": [
                         "tab6"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1449049646680
-                        },
-                        "filter": true,
-                        "title": "RateCard.sol",
-                        "tooltip": "/dapp/contracts/RateCard.sol",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab0",
-                    "path": "/dapp/contracts/std.sol",
-                    "className": [
-                        "tab0"
-                    ],
-                    "document": {
-                        "filter": true,
-                        "title": "std.sol",
-                        "tooltip": "/dapp/contracts/std.sol",
-                        "ace": {
-                            "folds": [],
-                            "scrolltop": 0,
-                            "scrollleft": 0,
-                            "selection": {
-                                "start": {
-                                    "row": 19,
-                                    "column": 36
-                                },
-                                "end": {
-                                    "row": 19,
-                                    "column": 36
-                                },
-                                "isBackwards": false
-                            },
-                            "options": {
-                                "guessTabSize": true,
-                                "useWrapMode": false,
-                                "wrapToView": true
-                            },
-                            "firstLineState": 0
-                        },
-                        "hash": "b8052f7bc3a519093655969f5bf25b1dbbba3dda",
-                        "meta": {
-                            "timestamp": 1448914431293
-                        },
-                        "changed": false
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab2",
-                    "path": "/ethereum.json",
-                    "className": [
-                        "tab2"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1448968830881
-                        },
-                        "filter": true,
-                        "title": "ethereum.json",
-                        "tooltip": "/ethereum.json",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab4",
-                    "path": "/dapp/contracts/RateEx.sol",
-                    "className": [
-                        "tab4"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1449051286145
+                            "timestamp": 1449056480346
                         },
                         "filter": true,
                         "title": "RateEx.sol",
@@ -264,6 +180,26 @@
                     },
                     "editorType": "ace",
                     "active": true
+                },
+                {
+                    "type": "tab",
+                    "name": "tab7",
+                    "path": "/dapp/contracts/RateCard.sol",
+                    "className": [
+                        "tab7"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1449055933002
+                        },
+                        "filter": true,
+                        "title": "RateCard.sol",
+                        "tooltip": "/dapp/contracts/RateCard.sol",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
                 }
             ],
             "skin": "editor_tab",
