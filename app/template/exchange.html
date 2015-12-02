@@ -1,6 +1,25 @@
 <div class="container mb-page">
 
-    <h1>Exchange</h1>
+    <h1>EtherTel Exchange</h1>
 
-    <p>PROVIDERS: <span class="badge">{{ ExchangeController.rateCardCount }}</span></p>
+    <p>No of Providers: <span class="badge">{{ ExchangeController.rateCardCount }}</span></p>
+
+    <hr/>
+
+    <div class="col-sm-3" ng-repeat="dest in ExchangeController.destinations">
+        <div class="panel panel-success" >
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ ::dest.name }}</h3>
+            </div>
+            <div class="panel-content">
+                <p class="text-center">
+                    <span style="font-size: 150%">{{ ::dest.rate }}</span>
+                    <span class="text-muted">WEI per SECOND</span>
+                </p>
+            </div>
+            <div class="panel-footer">
+                <span class="text-muted">Provider:</span> {{ ExchangeController.getPrettyRateCard(dest.rateCard) }}
+            </div>
+        </div>
+    </div>
 </div>

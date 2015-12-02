@@ -307,15 +307,4 @@ mbApp.constants
                 }
             ]
         }
-        //},
-        //RateCardAlpha: {
-        //    address: '0x57b5dd74904097d6ef9d4aa99febe0ad2adf7d0b',
-        //    namespace: 'ethertel/rate-card-alpha',
-        //    abi: []
-        //},
-        //RateCardBeta: {
-        //    address: '0x57b5dd74904097d6ef9d4aa99febe0ad2adf7d0b',
-        //    namespace: 'ethertel/rate-card-beta',
-        //    abi: []
-        //}
     });
