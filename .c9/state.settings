@@ -1,7 +1,7 @@
 {
     "console": {
         "@expanded": true,
-        "@height": 309,
+        "@height": 298,
         "@maximized": "false",
         "json()": {
             "meta": {
@@ -29,8 +29,8 @@
                         "terminal": {
                             "id": "devel_849",
                             "cwd": "",
-                            "width": 1266,
-                            "height": 283
+                            "width": 866,
+                            "height": 272
                         }
                     },
                     "editorType": "terminal",
@@ -67,18 +67,19 @@
         "counters": {
             "@ace": 1,
             "@acestatus": 1,
-            "@divider": 5,
-            "@document": 9,
+            "@divider": 4,
+            "@document": 4,
             "@ethereum-console": 1,
             "@form": 5,
             "@immediate": 1,
-            "@menu": 7,
-            "@menuitem": 17,
+            "@menu": 5,
+            "@menuitem": 13,
             "@pane": 2,
             "@preferences": 1,
-            "@session": 9,
+            "@session": 4,
             "@tab": 8,
-            "@undoManager": 9,
+            "@tree": 2,
+            "@undoManager": 4,
             "@welcome": 1
         }
     },
@@ -102,7 +103,7 @@
     },
     "panels": {
         "@active-left": "tree",
-        "@active-right": "none",
+        "@active-right": "ethergit.ethereum.sandbox.panel",
         "collab": {
             "@enabled": "true",
             "@name": "collab"
@@ -171,7 +172,7 @@
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1449056480346
+                            "timestamp": 1449058099546
                         },
                         "filter": true,
                         "title": "RateEx.sol",
@@ -191,7 +192,7 @@
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1449055933002
+                            "timestamp": 1449055936723
                         },
                         "filter": true,
                         "title": "RateCard.sol",

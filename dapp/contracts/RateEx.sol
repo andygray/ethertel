@@ -34,7 +34,7 @@ contract RateEx is owned, named("RateEx") {
         addDestination(1);
         addDestination(91);
         
-        // default rate card
+        // default rate cards
         addRateCard(0xdf315f7485c3a86eb692487588735f224482abe3);
         addRateCard(0x17956ba5f4291844bc25aedb27e69bc11b5bda39);
         
@@ -74,27 +74,7 @@ contract RateEx is owned, named("RateEx") {
         AddDestination(countryCode);
     }
     
-    function lowestRate(uint countryCode) constant returns (uint lowestRate) {
-        
-        // don't cover that destination
-        if (destinations[countryCode] == false) throw;
-        
-        uint lowest = 999999;
-        for (uint i = 0; i < rateCards.length; i++) {
-            RateCard rc = RateCard(rateCards[i]);
-            uint rate = rc.rates(countryCode);
-            if (rate > 0 && rate < lowest) {
-               lowest = rate; 
-            }
-        }
-        
-        // no rate on exchange
-        if (lowest == 999999) throw;
-        
-        return lowest; 
-    }
-    
-    function lowestRateCard(uint countryCode) constant returns (uint lowestRate, address lowestRateCard) {
+    function lowestRateCard(uint countryCode) constant returns (uint lowestRate, address lowestRateCardAddress) {
         
         // don't cover that destination
         if (destinations[countryCode] == false) throw;
@@ -113,6 +93,28 @@ contract RateEx is owned, named("RateEx") {
         // no rate on exchange
         if (lowest == 999999) throw;
         
-        return [lowest, lowestCard]; 
+        return (lowest, lowestCard); 
+    }
+    
+    function quote(uint countryCode, uint timeInSecs) constant returns (uint amountInWei, address lowestRateCardAddress) {
+        // don't cover that destination
+        if (destinations[countryCode] == false) throw;
+        
+        address lowestCard = 0x0;
+        uint lowest = 999999;
+        for (uint i = 0; i < rateCards.length; i++) {
+            RateCard rc = RateCard(rateCards[i]);
+            uint rate = rc.rates(countryCode);
+            if (rate > 0 && rate < lowest) {
+              lowest = rate; 
+              lowestCard = rateCards[i]; 
+            }
+        }
+        
+        // no rate on exchange
+        if (lowest == 999999) throw;
+        
+        return (lowest * timeInSecs, lowestCard); 
+ 
     }
 }
