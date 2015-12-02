@@ -8,7 +8,8 @@
 
         return {
             rateCardCount: rateCardCount,
-            lowestRateForCountryCode: lowestRateForCountryCode
+            lowestRateForCountryCode: lowestRateForCountryCode,
+            quote: quote
         };
 
         function rateCardCount() {
@@ -24,6 +25,17 @@
                 if (res) {
                     return {
                         rate: res[0].toNumber(),
+                        rateCard: res[1]
+                    };
+                }
+            });
+        }
+
+        function quote(countryCode, estimateInSecs) {
+            return ContractService.RateEx().with(defaultContext()).quote(countryCode, estimateInSecs).then(function(res) {
+                if (res) {
+                    return {
+                        estimatedAmountInWei: res[0].toNumber(),
                         rateCard: res[1]
                     };
                 }

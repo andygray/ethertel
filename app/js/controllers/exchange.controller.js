@@ -16,7 +16,7 @@
             $log.debug('Number of rate cards', vm.rateCardCount);
         });
 
-        vm.destinations = []
+        vm.destinations = [];
         _.map(SupportedDestinations, function (dest) {
             RateEx.lowestRateForCountryCode(dest.countryCode).then(function (res) {
                 $log.debug('Rate for ' + dest.name, res.rate);
@@ -25,7 +25,6 @@
                 vm.destinations.push(dest);
             });
         });
-
 
         vm.getPrettyRateCard = function (hash) {
             return SupportedRateCards[hash];

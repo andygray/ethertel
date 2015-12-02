@@ -1,0 +1,28 @@
+<div class="container mb-page">
+
+    <h1>EtherTel Payphone</h1>
+
+    <h3>Quote</h3>
+
+    <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote">
+        <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations" ng-model="PayphoneController.countryCode"></select>
+
+        <div ng-if="PayphoneController.countryCode">
+            <h4>{{ ::PayphoneController.countryCode }}</h4>
+            <h4><input type="number" ng-model="PayphoneController.telephoneNumber" placeholder="telephone number"/></h4>
+            <h4><input type="number" ng-model="PayphoneController.estimatedMins" placeholder="estimated mins"/></h4>
+            <h4><button ng-click="PayphoneController.quote()">QUOTE</button></h4>
+        </div>
+    </div>
+
+
+    <div ng-if="PayphoneController.myQuote">
+        <div>
+            <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
+            <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
+            <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
+            <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
+            <h4><button>CALL</button></h4>
+        </div>
+    </div>
+</div>

@@ -18,6 +18,11 @@
                 controller: 'ExchangeController',
                 controllerAs: 'ExchangeController'
             })
+            .when('/payphone', {
+                templateUrl: 'template/payphone.html',
+                controller: 'PayphoneController',
+                controllerAs: 'PayphoneController'
+            })
             .otherwise({
                 redirectTo: '/'
             });
