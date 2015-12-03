@@ -13,41 +13,11 @@
 
 <body ng-app="mbApp">
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/">EtherTel</a>
-        </div>
-
-        <div class="collapse navbar-collapse" ng-controller="AuthController">
-
-            <ul class="nav navbar-nav" ng-hide="isAnonymous">
-                <li class="active"><a href="#/payphone">Payphone</a></li>
-                <li class=""><a href="#/exchange">Exchange</a></li>
-            </ul>
-
-            <form class="navbar-form navbar-right" role="form">
-                <span class="text-muted" style="padding-right: 20px;">{{ address }}</span>
-
-                <div class="form-group" ng-show="isAnonymous">
-                    <input ng-model="seed" type="password" class="form-control" placeholder="Input seed phrase ...">
-                </div>
-                <button class="btn" ng-class="isAnonymous ? 'btn-success' : 'hide'" ng-click="login()">Sign in</button>
-                <button class="btn" ng-class="isAnonymous ? 'hide' : 'btn-success'" ng-click="logout()">Log out</button>
-            </form>
-        </div>
-        <!--/.navbar-collapse -->
-
-    </div>
-</div>
-
 <div ng-view class="view-frame"></div>
+
+<footer ng-controller="AuthController" class="mb-page">
+    <button class="btn pull-right" ng-class="isAnonymous ? 'hide' : 'btn-success'" ng-click="logout()">Log out</button>
+</footer>
 
 <!-- Common libs -->
 <script src="lib/underscore/underscore-min.js"></script>

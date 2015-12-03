@@ -9,23 +9,14 @@
 
         var vm = this;
 
-        vm.isAnonymous = AuthService.isAnonymous();
         vm.telephoneNumber = '';
 
-        vm.destinations = [];
-        _.map(SupportedDestinations, function (dest) {
-            RateEx.lowestRateForCountryCode(dest.countryCode).then(function (res) {
-                $log.debug('Rate for ' + dest.name, res.rate);
-                dest.rate = res.rate;
-                dest.rateCard = res.rateCard;
-                vm.destinations.push(dest);
-            });
-        });
+        vm.destinations = SupportedDestinations;
 
         vm.quote = function () {
             if (vm.countryCode && vm.estimatedMins) {
                 RateEx.quote(vm.countryCode, vm.estimatedMins * 60).then(function (res) {
-                    $log.debug('Quote for ' + vm.countryCode, res.rate);
+                    $log.debug('Quote for ' + vm.countryCode, res.estimatedAmountInWei);
 
                     vm.myQuote = {
                         estimatedAmountInWei: res.estimatedAmountInWei,
@@ -42,6 +33,35 @@
         vm.getPrettyRateCard = function (hash) {
             return SupportedRateCards[hash];
         };
+
+        // auth magic
+
+        vm.isAnonymous = AuthService.isAnonymous();
+        vm.address = AuthService.getAddress();
+
+        vm.login = function () {
+            AuthService.login(vm.seed);
+        };
+
+        var loginListener = $rootScope.$on('auth:login', function(e, data) {
+            _.extend(vm, {
+                seed: '',
+                address: data.address,
+                isAnonymous: false
+            });
+        });
+
+        var logoutListener = $rootScope.$on('auth:logout', function(e, data) {
+            _.extend(vm, {
+                address: '',
+                isAnonymous: true
+            });
+        });
+
+        $scope.$on('$destroy', function() {
+            loginListener();
+            logoutListener();
+        });
     }
 
 })();

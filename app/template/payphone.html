@@ -42,7 +42,16 @@
             <h4>Estimate Mins: {{ ::PayphoneController.estimatedMins }}</h4>
             <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
             <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
-            <h4><button>CALL</button></h4>
+
+            <div class="form-group" ng-show="PayphoneController.isAnonymous">
+                <input ng-model="PayphoneController.seed" type="password" class="form-control" placeholder="Input seed phrase ...">
+                <button ng-click="PayphoneController.login()">Sign</button>
+            </div>
+            <h4 ng-show="!PayphoneController.isAnonymous">
+                <input ng-model="PayphoneController.weiValue" type="number" ng-value="::PayphoneController.myQuote.estimatedAmountInWei"/>
+                <small>{{ PayphoneController.address }}</small>
+                <button>CALL</button>
+            </h4>
         </div>
     </div>
 </div>

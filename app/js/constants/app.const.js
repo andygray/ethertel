@@ -22,5 +22,7 @@ mbApp.constants
     // temp hard code
     .constant('SupportedRateCards', {
         '0x17956ba5f4291844bc25aedb27e69bc11b5bda39': 'RateCardAlpha',
-        '0xdf315f7485c3a86eb692487588735f224482abe3': 'RateCardBeta'
+        '0xdf315f7485c3a86eb692487588735f224482abe3': 'RateCardBeta',
+        '0xaefa01276783e1436e5b461c099edccb0448dcf6': 'XYZ',
+        '0x06b179aabf198ced0f98c8ceca905a920a137ef4': 'GLTD'
     });

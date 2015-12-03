@@ -52,7 +52,7 @@ mbApp.constants
             }]
         },
         RateEx: {
-            address: '0x06b179aabf198ced0f98c8ceca905a920a137ef4',
+            address: '0x086ca7abad7f9773db72e2efd83dd22f5f408862',
             namespace: 'ethertel/rate-ex',
             abi: [
                 {
