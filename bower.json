@@ -11,9 +11,9 @@
     "angular-resource": "1.4.x",
     "angular-animate": "1.4.x",
     "angular-bootstrap": "latest",
-
     "underscore": "latest",
     "web3": "~0.14.0",
-    "moment": "latest"
+    "moment": "latest",
+    "lodash": "~3.10.1"
   }
 }
