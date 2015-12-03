@@ -1,5 +1,5 @@
 <div id="phoneWrapper">
-    <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote">
+    <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote && !PayphoneController.callQuoting">
         <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations"
                 ng-model="PayphoneController.countryCode" class="buttonStyle">
             <option value="" selected disabled>Select Country</option>
@@ -35,24 +35,42 @@
         </div>
     </div>
 
-    <div ng-if="PayphoneController.myQuote">
+    <div ng-if="PayphoneController.myQuote && !PayphoneController.callAdding && !PayphoneController.callAdded">
         <div>
             <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
             <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
             <h4>Estimate Mins: {{ ::PayphoneController.estimatedMins }}</h4>
             <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
             <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
+            <h4>Rate: {{ ::PayphoneController.rate }}</h4>
+            <h4>Quality: <span class="badge">{{ ::PayphoneController.quality }}</span></h4>
 
             <div class="form-group" ng-show="PayphoneController.isAnonymous">
                 <input ng-model="PayphoneController.seed" type="password" class="form-control" placeholder="Input seed phrase ...">
                 <button ng-click="PayphoneController.login()">Sign</button>
             </div>
             <h4 ng-show="!PayphoneController.isAnonymous">
-                <input ng-model="PayphoneController.weiValue" type="number" ng-value="::PayphoneController.myQuote.estimatedAmountInWei"/>
+                <input ng-model="PayphoneController.weiValue" type="number"/>
                 <small>{{ PayphoneController.address }}</small>
                 <button ng-click="PayphoneController.addCall()">Make Call</button>
             </h4>
         </div>
+    </div>
+
+    <div ng-if="PayphoneController.callQuoting">
+        <h1>Spinner thingy - Building Quote!!</h1>
+    </div>
+
+    <div ng-if="PayphoneController.myQuote && PayphoneController.callAdding">
+        <h1>Spinner thingy - Confirming Call!!</h1>
+    </div>
+
+    <div ng-if="PayphoneController.myQuote && PayphoneController.callAdded">
+        <h1>CONFIRMED</h1>
+        <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
+        <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
+        <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
+        <h4>Receipt: {{ ::PayphoneController.receipt }}</h4>
     </div>
 </div>
     

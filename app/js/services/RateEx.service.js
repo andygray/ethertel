@@ -48,8 +48,7 @@
             return ContractService.RateEx().with(defaultContextWithValue(weiValue))
                 .addCall(rateCard, countryCode, telephoneNumber).then(function (res) {
                     if (res) {
-                        console.log(res);
-                        return true;
+                        return res;
                     }
                 });
         }

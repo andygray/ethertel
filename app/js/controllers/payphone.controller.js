@@ -13,15 +13,26 @@
 
         vm.destinations = SupportedDestinations;
 
+        vm.myQuote = undefined;
+        vm.callQuoting = false;
+        vm.callAdding = false;
+        vm.callAdded = false;
+
         vm.quote = function () {
+            vm.callQuoting = true;
             if (vm.countryCode && vm.estimatedMins) {
+
                 RateEx.quote(vm.countryCode, vm.estimatedMins * 60).then(function (res) {
                     $log.debug('Quote for ' + vm.countryCode, res.estimatedAmountInWei);
 
-                    vm.myQuote = {
+                    vm.myQuote = {};
+                    _.extend(vm.myQuote, {
                         estimatedAmountInWei: res.estimatedAmountInWei,
                         rateCard: res.rateCard
-                    };
+                    });
+
+                    vm.weiValue = res.estimatedAmountInWei;
+                    vm.callQuoting = false;
                 });
             }
         };
@@ -34,10 +45,14 @@
             return SupportedRateCards[hash];
         };
 
-        vm.addCall = function() {
-            RateEx.addCall(vm.myQuote.rateCard, vm.countryCode, vm.telephoneNumber, vm.weiValue).then(function (res) {
-                $log.info(res);
-            })
+        vm.addCall = function () {
+            vm.callAdding = true;
+            RateEx.addCall(vm.myQuote.rateCard, vm.countryCode, vm.telephoneNumber, vm.weiValue)
+                .then(function (res) {
+                    vm.callAdded = true;
+                    vm.callAdding = false;
+                    vm.receipt = res;
+                })
         };
 
         // auth magic
@@ -49,7 +64,7 @@
             AuthService.login(vm.seed);
         };
 
-        var loginListener = $rootScope.$on('auth:login', function(e, data) {
+        var loginListener = $rootScope.$on('auth:login', function (e, data) {
             _.extend(vm, {
                 seed: '',
                 address: data.address,
@@ -57,14 +72,14 @@
             });
         });
 
-        var logoutListener = $rootScope.$on('auth:logout', function(e, data) {
+        var logoutListener = $rootScope.$on('auth:logout', function (e, data) {
             _.extend(vm, {
                 address: '',
                 isAnonymous: true
             });
         });
 
-        $scope.$on('$destroy', function() {
+        $scope.$on('$destroy', function () {
             loginListener();
             logoutListener();
         });
