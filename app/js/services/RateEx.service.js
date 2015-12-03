@@ -33,27 +33,32 @@
         }
 
         /**
-         * Produces pair's of
-         * <code>
-         *     bytes32 public name;
-         *     bytes32 public domain;
-         *     mapping (uint => uint) public rates;
-         * </code>
+         * Array of Object { name: domain }
          */
         function getAllRateCard() {
             return this.rateCardCount()
                 .then(function (count) {
                     console.log("Count", count);
 
-                    var resolves =
-                        _.chain(0).range(count)
-                            .value()
-                            .map(this.getRateCardDetails);
+                    var resolves = _.chain(0).range(count)
+                        .value()
+                        .map(this.getRateCardDetails);
 
                     return $q.all(resolves)
                         .then(function (results) {
-                            console.log(results);
-                            return results;
+                            console.log('All Rate Cards', results);
+                            /**
+                             *  bytes32 public name;
+                             *  bytes32 public domain;
+                             *  mapping (uint => uint) public rates;
+                             */
+                            return results.map(function (rateCardRaw) {
+                                // Translate it into something useful!
+                                return {
+                                    name: rateCardRaw[0],
+                                    domain: rateCardRaw[1]
+                                }
+                            });
                         })
                         .catch(function (error) {
                             console.error(error);

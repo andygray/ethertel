@@ -14,8 +14,6 @@
         var vm = this;
 
         vm.http_provider = Web3Config.PROVIDER;
-
-        RateEx.getAllRateCard();
     }
 
 })();
