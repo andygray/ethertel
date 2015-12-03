@@ -69,6 +69,18 @@ mbApp.constants
                 },
                 {
                     "constant": false,
+                    "inputs": [],
+                    "name": "getBalance",
+                    "outputs": [
+                        {
+                            "name": "bal",
+                            "type": "uint256"
+                        }
+                    ],
+                    "type": "function"
+                },
+                {
+                    "constant": false,
                     "inputs": [
                         {
                             "name": "countryCode",
@@ -77,6 +89,18 @@ mbApp.constants
                     ],
                     "name": "addDestination",
                     "outputs": [],
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "numberOfCalls",
+                    "outputs": [
+                        {
+                            "name": "count",
+                            "type": "uint256"
+                        }
+                    ],
                     "type": "function"
                 },
                 {
@@ -132,6 +156,35 @@ mbApp.constants
                     "constant": true,
                     "inputs": [
                         {
+                            "name": "rateCard",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "qualityForRateCard",
+                    "outputs": [
+                        {
+                            "name": "qualityRating",
+                            "type": "uint256"
+                        }
+                    ],
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "owner",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
                             "name": "",
                             "type": "uint256"
                         }
@@ -141,6 +194,47 @@ mbApp.constants
                         {
                             "name": "",
                             "type": "bool"
+                        }
+                    ],
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "cHash",
+                            "type": "bytes32"
+                        },
+                        {
+                            "name": "callInSeconds",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "completeCall",
+                    "outputs": [],
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "cHash",
+                            "type": "bytes32"
+                        }
+                    ],
+                    "name": "validateCall",
+                    "outputs": [
+                        {
+                            "name": "maxInSeconds",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "countryCode",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "amountInWei",
+                            "type": "uint256"
                         }
                     ],
                     "type": "function"
@@ -176,6 +270,18 @@ mbApp.constants
                 },
                 {
                     "constant": true,
+                    "inputs": [],
+                    "name": "lengthOfTotalCalls",
+                    "outputs": [
+                        {
+                            "name": "count",
+                            "type": "uint256"
+                        }
+                    ],
+                    "type": "function"
+                },
+                {
+                    "constant": true,
                     "inputs": [
                         {
                             "name": "",
@@ -187,6 +293,31 @@ mbApp.constants
                         {
                             "name": "",
                             "type": "address"
+                        }
+                    ],
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "rateCard",
+                            "type": "address"
+                        },
+                        {
+                            "name": "countryCode",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "telephoneNumber",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "addCall",
+                    "outputs": [
+                        {
+                            "name": "callHash",
+                            "type": "bytes32"
                         }
                     ],
                     "type": "function"
@@ -218,7 +349,19 @@ mbApp.constants
                             "type": "uint256"
                         },
                         {
+                            "name": "timestamp",
+                            "type": "uint256"
+                        },
+                        {
                             "name": "amountInWei",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "rate",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "maxInSeconds",
                             "type": "uint256"
                         },
                         {
@@ -240,6 +383,10 @@ mbApp.constants
                         {
                             "name": "quality",
                             "type": "uint256"
+                        },
+                        {
+                            "name": "callHash",
+                            "type": "bytes32"
                         }
                     ],
                     "type": "function"
@@ -261,6 +408,48 @@ mbApp.constants
                         {
                             "name": "lowestRateCardAddress",
                             "type": "address"
+                        },
+                        {
+                            "name": "quality",
+                            "type": "uint256"
+                        }
+                    ],
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "index",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "getRateCardDetails",
+                    "outputs": [
+                        {
+                            "name": "cardAddress",
+                            "type": "address"
+                        },
+                        {
+                            "name": "name",
+                            "type": "bytes32"
+                        }
+                    ],
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "rateCardsMap",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool"
                         }
                     ],
                     "type": "function"
@@ -303,6 +492,127 @@ mbApp.constants
                         }
                     ],
                     "name": "AddDestination",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "caller",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "rateCard",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "countryCode",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "telephoneNumber",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "timestamp",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "amountInWei",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "rate",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "maxInSeconds",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "callHash",
+                            "type": "bytes32"
+                        }
+                    ],
+                    "name": "AddCallTx",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "caller",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "NotEnoughEtherCallTx",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "caller",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "rateCard",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "countryCode",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "telephoneNumber",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "timestamp",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "amountInWei",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "rate",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "callInSeconds",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "costInWei",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "refundInWei",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "CompletedCallTx",
                     "type": "event"
                 }
             ]

@@ -34,6 +34,12 @@
             return SupportedRateCards[hash];
         };
 
+        vm.addCall = function() {
+            RateEx.addCall(vm.myQuote.rateCard, vm.countryCode, vm.telephoneNumber, vm.weiValue).then(function (res) {
+                $log.info(res);
+            })
+        };
+
         // auth magic
 
         vm.isAnonymous = AuthService.isAnonymous();

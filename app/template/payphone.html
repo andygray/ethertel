@@ -50,7 +50,7 @@
             <h4 ng-show="!PayphoneController.isAnonymous">
                 <input ng-model="PayphoneController.weiValue" type="number" ng-value="::PayphoneController.myQuote.estimatedAmountInWei"/>
                 <small>{{ PayphoneController.address }}</small>
-                <button>CALL</button>
+                <button ng-click="PayphoneController.addCall()">Make Call</button>
             </h4>
         </div>
     </div>

@@ -15,8 +15,10 @@
 
 <div ng-view class="view-frame"></div>
 
-<footer ng-controller="AuthController" class="mb-page">
-    <button class="btn pull-right" ng-class="isAnonymous ? 'hide' : 'btn-success'" ng-click="logout()">Log out</button>
+<footer ng-controller="AuthController" class="mb-page pull-right" style="padding-right: 50px;">
+   <a href="#/">Home</a>
+    | <a href="#/exchange">Exchange</a>
+    <span ng-if="isAnonymous">| <a href=""  ng-click="logout()">Log out</a></span>
 </footer>
 
 <!-- Common libs -->
