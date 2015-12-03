@@ -29,4 +29,6 @@ User can use normal ethereum wallet to fund account and calls.
 
 Provider can use normal ethereum wallet to withdraw cleared funds.
 
+http://ethertel.on.ether.camp:8080/#/
+
 

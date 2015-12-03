@@ -1,28 +1,46 @@
-<div class="container mb-page">
 
-    <h1>EtherTel Payphone</h1>
-
-    <h3>Quote</h3>
-
-    <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote">
-        <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations" ng-model="PayphoneController.countryCode"></select>
+<div id="phoneWrapper">
+       <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote">
+        <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations" ng-model="PayphoneController.countryCode" class="buttonStyle">
+             <option value="" selected disabled>Select Country</option>
+        
+            
+        </select>
 
         <div ng-if="PayphoneController.countryCode">
-            <h4>{{ PayphoneController.countryCode }}</h4>
-            <h4><input type="number" ng-model="PayphoneController.telephoneNumber" placeholder="telephone number"/></h4>
-            <h4><input type="number" ng-model="PayphoneController.estimatedMins" placeholder="estimated mins"/></h4>
-            <h4><button ng-click="PayphoneController.quote()">QUOTE</button></h4>
+            
+            <div id="fullTelNumber">
+                <div id="diallingCode">{{ PayphoneController.countryCode }}</div>
+               <div id="diallingNumber"><input type="number" ng-class="telNumber" ng-model="PayphoneController.telephoneNumber" placeholder="telephone number"/></div>
+            </div>
+            
+                <div id="keyPad">
+            <div class="1key pad">1</div>
+            <div class="2key pad">2</div>
+            <div class="3key pad">3</div>
+            <div class="4key pad">4</div>
+            <div class="5key pad">5</div>
+            <div class="6key pad">6</div>
+            <div class="7key pad">7</div>
+            <div class="8key pad">8</div>
+            <div class="9key pad">9</div>
+            <div class="0key pad">x</div>
+            <div class="deletekey pad">0</div>
+            <div class="pluskey pad">+</div>
+        </div>
+            <input  type="number" ng-model="PayphoneController.estimatedMins" placeholder="estimated mins"/>
+            <button class="buttonStyle" ng-click="PayphoneController.quote()">Quote</button>
         </div>
     </div>
+    
+    
 
-
-    <div ng-if="PayphoneController.myQuote">
-        <div>
-            <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
-            <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
-            <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
-            <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
-            <h4><button>CALL</button></h4>
-        </div>
+    
+    
+   
+        
     </div>
-</div>
+    
+    
+
+

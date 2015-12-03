@@ -8,15 +8,19 @@ contract RateEx is owned, named("RateEx") {
         address rateCard;
         uint countryCode;  
         uint telephoneNumber;
+        uint timestamp;
         uint amountInWei;
         uint callInSeconds;
         uint costInWei;
         uint refundInWei;
         bool completed;
         uint quality;
+        bytes32 callHash;
     }
     
     address[] public rateCards;
+    
+    mapping (bytes32 => uint) callHashIndex;
     CallTx[] public calls;
     
     mapping (uint => bool) public destinations;
@@ -24,6 +28,24 @@ contract RateEx is owned, named("RateEx") {
     event RateExInit(address owner);
     event AddRateCard(address rateCardAddress);
     event AddDestination(uint destination);
+    
+    event AddCallTx(address caller,
+        address rateCard,
+        uint countryCode,  
+        uint telephoneNumber,
+        uint timestamp,
+        uint amountInWei,
+        bytes32 callHash);
+        
+    event CompletedCallTx(address caller,
+        address rateCard,
+        uint countryCode,  
+        uint telephoneNumber,
+        uint timestamp,
+        uint amountInWei,
+        uint callInSeconds,
+        uint costInWei,
+        uint refundInWei);
     
     function RateEx() {
         
@@ -39,32 +61,111 @@ contract RateEx is owned, named("RateEx") {
         addRateCard(0x17956ba5f4291844bc25aedb27e69bc11b5bda39);
         
         // add a few mock calls
-        calls.push(CallTx(
-            0x0ec96244d9efcf1711b7383644abbe0f31bc5fcc, 
-            0xdf315f7485c3a86eb692487588735f224482abe3, 
-            44, 
-            7930534450, 
-            300 * 2, 
-            242,
-            242 * 2, 
-            58 * 2, 
-            true, 
-            4));
-            
-        calls.push(CallTx(
-            0x0ec96244d9efcf1711b7383644abbe0f31bc5fcc, 
+        bytes32 chash1 = addCall(0x0ec96244d9efcf1711b7383644abbe0f31bc5fcc, 
             0xdf315f7485c3a86eb692487588735f224482abe3, 
             1, 
-            2024561111, 
-            600 * 5, 
-            59,
-            59 * 5, 
-            541 * 2, 
-            true, 
-            4));
+            2024561333, 
+            600 * 5);
+        
+        completeCall(chash1, 64);
+        
+        bytes32 chash2 = addCall(0x0ec96244d9efcf1711b7383644abbe0f31bc5fcc, 
+            0x17956ba5f4291844bc25aedb27e69bc11b5bda39, 
+            44, 
+            7930123234, 
+            600 * 5);
+        
+        completeCall(chash2, 128);
     }
     
-    function addRateCard(address rateCardAddress) {
+    function numberOfRateCards() constant returns (uint count) {
+        return rateCards.length;
+    }
+    
+    function numberOfCalls() constant returns (uint count) {
+        return calls.length;
+    }
+    
+    function lengthOfTotalCalls() constant returns (uint count) {
+        uint total = 0;
+        for (uint i = 0; i < rateCards.length; i++) {
+            total += total + calls[i].callInSeconds;
+        }
+        return total;
+    }
+    
+    function addCall(address caller,
+        address rateCard,
+        uint countryCode,  
+        uint telephoneNumber,
+        uint amountInWei) internal returns (bytes32 callHash) {
+
+        bytes32 cHash = sha3(caller, countryCode, telephoneNumber, block.timestamp);
+        calls.push(CallTx(
+            caller, 
+            rateCard, 
+            countryCode, 
+            telephoneNumber, 
+            block.timestamp,
+            amountInWei, 
+            0,
+            0, 
+            0, 
+            false, 
+            0,
+            cHash));
+            
+        AddCallTx(caller, 
+            rateCard, 
+            countryCode, 
+            telephoneNumber, 
+            block.timestamp,
+            amountInWei,
+            callHash);    
+            
+        callHashIndex[cHash] = numberOfCalls();
+            
+        return cHash;    
+    }
+    
+    function completeCall(bytes32 cHash, uint callInSeconds) {
+        
+        if (callHashIndex[cHash] == 0) throw;
+        
+        uint index = callHashIndex[cHash] - 1; // we store length so index is one less
+        uint rate = RateCard(calls[index].rateCard).rates(calls[index].countryCode);
+        
+        calls[index].callInSeconds = callInSeconds;
+        calls[index].costInWei = rate * callInSeconds;
+        calls[index].refundInWei = calls[index].amountInWei - calls[index].costInWei;
+        calls[index].completed = true;
+
+        CompletedCallTx(calls[index].caller,
+            calls[index].rateCard,
+            calls[index].countryCode,  
+            calls[index].telephoneNumber,
+            calls[index].timestamp,
+            calls[index].amountInWei,
+            calls[index].callInSeconds,
+            calls[index].costInWei,
+            calls[index].refundInWei);
+    }
+    
+    function qualityForRateCard(address rateCard) constant returns (uint qualityRating) {
+        uint quality = 0;
+        uint total = 0;
+        for (uint i = 0; i < rateCards.length; i++) {
+            if (calls[i].rateCard == rateCard) {
+                if (calls[i].completed && calls[i].quality > 0) {
+                    quality += calls[i].quality;
+                    total += 1;
+                }
+            }
+        }
+        return quality / total;
+    }
+    
+    function addRateCard(address rateCardAddress) onlyowner {
         rateCards.push(rateCardAddress);
         AddRateCard(rateCardAddress);
     }
@@ -74,7 +175,7 @@ contract RateEx is owned, named("RateEx") {
         AddDestination(countryCode);
     }
     
-    function lowestRateCard(uint countryCode) constant returns (uint lowestRate, address lowestRateCardAddress) {
+    function lowestRateCard(uint countryCode) constant returns (uint lowestRate, address lowestRateCardAddress, uint quality) {
         
         // don't cover that destination
         if (destinations[countryCode] == false) throw;
@@ -93,7 +194,7 @@ contract RateEx is owned, named("RateEx") {
         // no rate on exchange
         if (lowest == 999999) throw;
         
-        return (lowest, lowestCard); 
+        return (lowest, lowestCard, qualityForRateCard(lowestCard)); 
     }
     
     function quote(uint countryCode, uint timeInSecs) constant returns (uint amountInWei, address lowestRateCardAddress) {
@@ -115,6 +216,5 @@ contract RateEx is owned, named("RateEx") {
         if (lowest == 999999) throw;
         
         return (lowest * timeInSecs, lowestCard); 
- 
     }
 }

@@ -18,7 +18,8 @@
                 </p>
             </div>
             <div class="panel-footer">
-                <span class="text-muted">Provider:</span> {{ ExchangeController.getPrettyRateCard(dest.rateCard) }}
+                <span class="text-muted">Provider:</span> {{ ExchangeController.getPrettyRateCard(dest.rateCard) }}<br/>
+                <span class="text-muted">Quality:</span> <span class="badge">{{ dest.quality }}</span><br/>
             </div>
         </div>
     </div>

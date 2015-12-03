@@ -22,6 +22,7 @@
                 $log.debug('Rate for ' + dest.name, res.rate);
                 dest.rate = res.rate;
                 dest.rateCard = res.rateCard;
+                dest.quality = res.quality;
                 vm.destinations.push(dest);
             });
         });

@@ -25,7 +25,8 @@
                 if (res) {
                     return {
                         rate: res[0].toNumber(),
-                        rateCard: res[1]
+                        rateCard: res[1],
+                        quality: 3 //res[2].toNumber()
                     };
                 }
             });
