@@ -81,6 +81,13 @@ contract RateEx is owned, named("RateEx") {
         return (rateCards[index], RateCard(rateCards[index]).name());    
     } 
     
+    // really should access RateCard direct
+    // temp?
+    function getRateForRateCard(address rateCard, uint countryCode) constant returns (uint rate) {
+        uint res = RateCard(rateCard).rates(countryCode);   
+        return res;
+    } 
+    
     function numberOfCalls() constant returns (uint count) {
         return calls.length;
     }
