@@ -10,6 +10,8 @@ contract RateEx is owned, named("RateEx") {
         uint telephoneNumber;
         uint timestamp;
         uint amountInWei;
+        uint rate;
+        uint maxInSeconds;
         uint callInSeconds;
         uint costInWei;
         uint refundInWei;
@@ -19,6 +21,7 @@ contract RateEx is owned, named("RateEx") {
     }
     
     address[] public rateCards;
+    mapping (address => bool) public rateCardsMap;
     
     mapping (bytes32 => uint) callHashIndex;
     CallTx[] public calls;
@@ -35,7 +38,11 @@ contract RateEx is owned, named("RateEx") {
         uint telephoneNumber,
         uint timestamp,
         uint amountInWei,
+        uint rate,
+        uint maxInSeconds,
         bytes32 callHash);
+        
+    event NotEnoughEtherCallTx(address caller);    
         
     event CompletedCallTx(address caller,
         address rateCard,
@@ -43,6 +50,7 @@ contract RateEx is owned, named("RateEx") {
         uint telephoneNumber,
         uint timestamp,
         uint amountInWei,
+        uint rate,
         uint callInSeconds,
         uint costInWei,
         uint refundInWei);
@@ -63,19 +71,15 @@ contract RateEx is owned, named("RateEx") {
         addRateCard(0x06b179aabf198ced0f98c8ceca905a920a137ef4); // gltd
        
         // add a few mock calls
-        bytes32 chash1 = addCall(0x0ec96244d9efcf1711b7383644abbe0f31bc5fcc, 
-            0xdf315f7485c3a86eb692487588735f224482abe3, 
+        bytes32 chash1 = addCall(0x17956ba5f4291844bc25aedb27e69bc11b5bda39, 
             1, 
-            2024561333, 
-            600 * 5);
+            2024561333);
         
         completeCall(chash1, 64);
         
-        bytes32 chash2 = addCall(0x0ec96244d9efcf1711b7383644abbe0f31bc5fcc, 
-            0x17956ba5f4291844bc25aedb27e69bc11b5bda39, 
+        bytes32 chash2 = addCall(0x06b179aabf198ced0f98c8ceca905a920a137ef4, 
             44, 
-            7930123234, 
-            600 * 5);
+            7930123234);
         
         completeCall(chash2, 128);
     }
@@ -102,20 +106,33 @@ contract RateEx is owned, named("RateEx") {
         return total;
     }
     
-    function addCall(address caller,
-        address rateCard,
+    function addCall(address rateCard,
         uint countryCode,  
-        uint telephoneNumber,
-        uint amountInWei) internal returns (bytes32 callHash) {
-
-        bytes32 cHash = sha3(caller, countryCode, telephoneNumber, block.timestamp);
+        uint telephoneNumber) returns (bytes32 callHash) {
+        
+        // invalid rate card    
+        if (rateCardsMap[rateCard] == false) throw;
+        
+        // no rate
+        if (RateCard(rateCard).rates(countryCode) == 0) throw;
+            
+        // ensure enough ether 
+        // coinbase gets free calls!
+        if (msg.value == 0 && msg.sender != 0xdedb49385ad5b94a16f236a6890cf9e0b1e30392) {
+            NotEnoughEtherCallTx(msg.sender);
+            return 0x0;
+        } 
+        
+        bytes32 cHash = sha3(msg.sender, countryCode, telephoneNumber, block.timestamp);
         calls.push(CallTx(
-            caller, 
+            msg.sender, 
             rateCard, 
             countryCode, 
             telephoneNumber, 
             block.timestamp,
-            amountInWei, 
+            msg.value, 
+            RateCard(rateCard).rates(countryCode),
+            msg.value / RateCard(rateCard).rates(countryCode),
             0,
             0, 
             0, 
@@ -123,12 +140,14 @@ contract RateEx is owned, named("RateEx") {
             0,
             cHash));
             
-        AddCallTx(caller, 
+        AddCallTx(msg.sender, 
             rateCard, 
             countryCode, 
             telephoneNumber, 
             block.timestamp,
-            amountInWei,
+            msg.value,
+            RateCard(rateCard).rates(countryCode),
+            msg.value / RateCard(rateCard).rates(countryCode),
             callHash);    
             
         callHashIndex[cHash] = numberOfCalls();
@@ -141,10 +160,9 @@ contract RateEx is owned, named("RateEx") {
         if (callHashIndex[cHash] == 0) throw;
         
         uint index = callHashIndex[cHash] - 1; // we store length so index is one less
-        uint rate = RateCard(calls[index].rateCard).rates(calls[index].countryCode);
         
         calls[index].callInSeconds = callInSeconds;
-        calls[index].costInWei = rate * callInSeconds;
+        calls[index].costInWei = calls[index].rate * callInSeconds;
         calls[index].refundInWei = calls[index].amountInWei - calls[index].costInWei;
         calls[index].completed = true;
 
@@ -154,9 +172,22 @@ contract RateEx is owned, named("RateEx") {
             calls[index].telephoneNumber,
             calls[index].timestamp,
             calls[index].amountInWei,
+            calls[index].rate,
             calls[index].callInSeconds,
             calls[index].costInWei,
             calls[index].refundInWei);
+            
+        // send the parties involved their ether
+        
+        // refund
+        if (calls[index].refundInWei > 0) {
+            calls[index].caller.send(calls[index].refundInWei);
+        }
+        
+        // rate card payment
+        if (calls[index].costInWei > 0) {
+            calls[index].rateCard.send(calls[index].costInWei);
+        }
     }
     
     function qualityForRateCard(address rateCard) constant returns (uint qualityRating) {
@@ -175,6 +206,7 @@ contract RateEx is owned, named("RateEx") {
     
     function addRateCard(address rateCardAddress) onlyowner {
         rateCards.push(rateCardAddress);
+        rateCardsMap[rateCardAddress] = true;
         AddRateCard(rateCardAddress);
     }
     
