@@ -5,9 +5,12 @@
     mbApp.controllers.controller('PayphoneController', PayphoneController);
 
     // EventService needed to hook up events!
-    function PayphoneController($log, $rootScope, $scope, AuthService, RateEx, SupportedDestinations, SupportedRateCards, EventService) {
+    function PayphoneController($log, $rootScope, $scope, AuthService, RateEx, SupportedDestinations, SupportedRateCards, ContractService, EventService) {
 
         var vm = this;
+
+        vm.isAnonymous = AuthService.isAnonymous();
+        vm.address = AuthService.getAddress();
 
         vm.telephoneNumber = '';
 
@@ -55,11 +58,26 @@
                 })
         };
 
+        // get my calls from event on the block chain
+        vm.attemptedCalls = [];
+        var event = ContractService.RateEx().original.AddCallTx({}, {fromBlock: 0, toBlock: 'latest'});
+        event.watch(function(error, result){
+            if (!error) {
+                //console.log(result.args);
+                if (result.args.caller === vm.address) {
+                    vm.attemptedCalls.push({
+                        caller: result.args.caller,
+                        countryCode: result.args.countryCode && result.args.countryCode.toNumber(),
+                        telephoneNumber: result.args.telephoneNumber && result.args.telephoneNumber.toNumber(),
+                        rate: result.args.rate && result.args.rate.toNumber(),
+                        timestamp: result.args.timestamp && result.args.timestamp.toNumber(),
+                        rateCard: result.args.rateCard
+                    });
+                }
+            }
+        });
+
         // auth magic
-
-        vm.isAnonymous = AuthService.isAnonymous();
-        vm.address = AuthService.getAddress();
-
         vm.login = function () {
             AuthService.login(vm.seed);
         };
@@ -82,6 +100,7 @@
         $scope.$on('$destroy', function () {
             loginListener();
             logoutListener();
+            event.stopWatching();
         });
     }
 

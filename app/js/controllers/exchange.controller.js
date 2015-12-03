@@ -16,6 +16,11 @@
             $log.debug('Number of rate cards', vm.rateCardCount);
         });
 
+        // hmmm?
+        //RateEx.exchangeBalance().then(function (res) {
+        //    vm.exchangeBalance = res;
+        //});
+
         vm.destinations = [];
         _.map(SupportedDestinations, function (dest) {
             RateEx.lowestRateForCountryCode(dest.countryCode).then(function (res) {

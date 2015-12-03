@@ -10,8 +10,17 @@
             rateCardCount: rateCardCount,
             lowestRateForCountryCode: lowestRateForCountryCode,
             quote: quote,
-            addCall: addCall
+            addCall: addCall,
+            exchangeBalance: exchangeBalance
         };
+
+        function exchangeBalance() {
+            return ContractService.RateEx().with(defaultContext()).getBalance().then(function (res) {
+                if (res) {
+                    return res.toNumber();
+                }
+            });
+        }
 
         function rateCardCount() {
             return ContractService.RateEx().with(defaultContext()).numberOfRateCards().then(function (res) {
