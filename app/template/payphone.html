@@ -1,45 +1,40 @@
-
 <div id="phoneWrapper">
-       <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote">
-        <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations" ng-model="PayphoneController.countryCode" class="buttonStyle">
-             <option value="" selected disabled>Select Country</option>
-        
-            
+    <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote">
+        <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations"
+                ng-model="PayphoneController.countryCode" class="buttonStyle">
+            <option value="" selected disabled>Select Country</option>
         </select>
 
         <div ng-if="PayphoneController.countryCode">
-            
+
             <div id="fullTelNumber">
-                <div id="diallingCode">{{ PayphoneController.countryCode }}</div>
-               <div id="diallingNumber"><input type="number" ng-class="telNumber" ng-model="PayphoneController.telephoneNumber" placeholder="telephone number"/></div>
+                <div id="diallingCode">+{{ PayphoneController.countryCode }}</div>
+                <div id="diallingNumber">
+                    <input type="text" ng-class="telNumber"
+                           ng-model="PayphoneController.telephoneNumber"
+                           placeholder="telephone number"/>
+                </div>
             </div>
-            
-                <div id="keyPad">
-            <div class="1key pad">1</div>
-            <div class="2key pad">2</div>
-            <div class="3key pad">3</div>
-            <div class="4key pad">4</div>
-            <div class="5key pad">5</div>
-            <div class="6key pad">6</div>
-            <div class="7key pad">7</div>
-            <div class="8key pad">8</div>
-            <div class="9key pad">9</div>
-            <div class="0key pad">x</div>
-            <div class="deletekey pad">0</div>
-            <div class="pluskey pad">+</div>
-        </div>
-            <input  type="number" ng-model="PayphoneController.estimatedMins" placeholder="estimated mins"/>
+
+            <div id="keyPad">
+                <div class="1key pad" ng-click="PayphoneController.keypad('1')">1</div>
+                <div class="2key pad" ng-click="PayphoneController.keypad('2')">2</div>
+                <div class="3key pad" ng-click="PayphoneController.keypad('3')">3</div>
+                <div class="4key pad" ng-click="PayphoneController.keypad('4')">4</div>
+                <div class="5key pad" ng-click="PayphoneController.keypad('5')">5</div>
+                <div class="6key pad" ng-click="PayphoneController.keypad('6')">6</div>
+                <div class="7key pad" ng-click="PayphoneController.keypad('7')">7</div>
+                <div class="8key pad" ng-click="PayphoneController.keypad('8')">8</div>
+                <div class="9key pad" ng-click="PayphoneController.keypad('9')">9</div>
+                <div class="deletekey pad">x</div>
+                <div class="0key pad" ng-click="PayphoneController.keypad('0')">0</div>
+                <div class="pluskey pad">+</div>
+            </div>
+            <input type="number" ng-model="PayphoneController.estimatedMins" placeholder="estimated mins"/>
             <button class="buttonStyle" ng-click="PayphoneController.quote()">Quote</button>
         </div>
     </div>
-    
-    
-
-    
-    
-   
-        
-    </div>
+</div>
     
     
 

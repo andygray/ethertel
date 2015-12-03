@@ -10,6 +10,7 @@
         var vm = this;
 
         vm.isAnonymous = AuthService.isAnonymous();
+        vm.telephoneNumber = '';
 
         vm.destinations = [];
         _.map(SupportedDestinations, function (dest) {
@@ -21,7 +22,7 @@
             });
         });
 
-        vm.quote = function() {
+        vm.quote = function () {
             if (vm.countryCode && vm.estimatedMins) {
                 RateEx.quote(vm.countryCode, vm.estimatedMins * 60).then(function (res) {
                     $log.debug('Quote for ' + vm.countryCode, res.rate);
@@ -32,6 +33,10 @@
                     };
                 });
             }
+        };
+
+        vm.keypad = function (num) {
+            vm.telephoneNumber = vm.telephoneNumber + num;
         };
 
         vm.getPrettyRateCard = function (hash) {
