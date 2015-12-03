@@ -1,63 +1,92 @@
 {
+    "ace": {
+        "search": {
+            "@backwards": "false",
+            "@highlightmatches": "true",
+            "@matchcase": "false",
+            "@preservecase": "false",
+            "@regex": "false",
+            "@wholeword": "false",
+            "@wraparound": "true"
+        }
+    },
     "console": {
         "@expanded": true,
-        "@height": 354,
-        "@maximized": "false",
+        "@height": 583,
+        "@maximized": false,
         "json()": {
-            "meta": {
-                "accessList": [
-                    "tab0",
-                    "tab2"
-                ]
-            },
-            "name": "pane1",
             "nodes": [
                 {
-                    "type": "tab",
-                    "name": "tab0",
-                    "path": "",
-                    "className": [
-                        "tab0",
-                        "focus"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1449134621713
-                        },
-                        "filter": true,
-                        "title": "Terminal",
-                        "terminal": {
-                            "id": "devel_788",
-                            "cwd": "",
-                            "width": 721,
-                            "height": 328
+                    "type": "pane",
+                    "name": "pane2",
+                    "nodes": [
+                        {
+                            "type": "tab",
+                            "name": "tab2",
+                            "path": "",
+                            "className": [],
+                            "document": {
+                                "changed": false,
+                                "meta": {
+                                    "timestamp": 1449148972728
+                                },
+                                "filter": true,
+                                "title": "Ethereum Console",
+                                "ethereum-console": {}
+                            },
+                            "editorType": "ethereum-console",
+                            "active": true
                         }
-                    },
-                    "editorType": "terminal",
-                    "active": true
+                    ],
+                    "height": "50%",
+                    "skin": "editor_tab",
+                    "skinset": "default",
+                    "meta": {
+                        "accessList": [
+                            "tab2"
+                        ]
+                    }
                 },
                 {
-                    "type": "tab",
-                    "name": "tab2",
-                    "path": "",
-                    "className": [],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1449148972728
-                        },
-                        "filter": true,
-                        "title": "Ethereum Console",
-                        "ethereum-console": {}
-                    },
-                    "editorType": "ethereum-console",
-                    "active": false
+                    "type": "pane",
+                    "name": "pane1",
+                    "nodes": [
+                        {
+                            "type": "tab",
+                            "name": "tab0",
+                            "path": "",
+                            "className": [
+                                "tab0",
+                                "focus"
+                            ],
+                            "document": {
+                                "changed": false,
+                                "meta": {
+                                    "timestamp": 1449134621713
+                                },
+                                "filter": true,
+                                "title": "Terminal",
+                                "terminal": {
+                                    "id": "devel_788",
+                                    "cwd": "",
+                                    "width": 1228,
+                                    "height": 265
+                                }
+                            },
+                            "editorType": "terminal",
+                            "active": true
+                        }
+                    ],
+                    "skin": "editor_tab",
+                    "skinset": "default",
+                    "meta": {
+                        "accessList": [
+                            "tab0"
+                        ]
+                    }
                 }
             ],
-            "skin": "editor_tab",
-            "skinset": "default",
-            "type": "pane"
+            "type": "vsplitbox"
         }
     },
     "experiments": {
@@ -71,16 +100,16 @@
             "@ace": 1,
             "@acestatus": 1,
             "@divider": 4,
-            "@document": 8,
+            "@document": 5,
             "@ethereum-console": 1,
             "@form": 5,
             "@immediate": 1,
             "@menu": 5,
             "@menuitem": 13,
-            "@pane": 2,
-            "@session": 8,
-            "@tab": 4,
-            "@undoManager": 8
+            "@pane": 3,
+            "@session": 5,
+            "@tab": 6,
+            "@undoManager": 5
         }
     },
     "findinfiles": {
@@ -98,12 +127,13 @@
     "panecycle": {
         "json()": [
             "tab0",
-            "tab3"
+            "tab5",
+            "tab2"
         ]
     },
     "panels": {
         "@active-left": "tree",
-        "@active-right": "ethergit.ethereum.sandbox.panel",
+        "@active-right": "none",
         "@width-right": 507,
         "collab": {
             "@enabled": "true",
@@ -156,12 +186,21 @@
     "recentfiles": {
         "json()": []
     },
+    "search-history": {
+        "search": {
+            "json()": [
+                "NotEnoughEtherCallTx"
+            ]
+        }
+    },
     "tabs": {
         "json()": {
-            "focus": "tab0",
+            "focus": "tab2",
             "meta": {
                 "accessList": [
-                    "tab3"
+                    "tab3",
+                    "tab5",
+                    "tab4"
                 ]
             },
             "name": "pane0",
@@ -176,11 +215,52 @@
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1449149474724
+                            "timestamp": 1449152855399
                         },
                         "filter": true,
                         "title": "RateEx.sol",
                         "tooltip": "/dapp/contracts/RateEx.sol",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab4",
+                    "path": "/dapp/contracts/RateCard.sol",
+                    "className": [
+                        "tab4"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1449149615147
+                        },
+                        "filter": true,
+                        "title": "RateCard.sol",
+                        "tooltip": "/dapp/contracts/RateCard.sol",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab5",
+                    "path": "/app/css/style.css",
+                    "className": [
+                        "tab5",
+                        "changed"
+                    ],
+                    "document": {
+                        "changed": true,
+                        "meta": {
+                            "timestamp": 1449154597664
+                        },
+                        "filter": true,
+                        "title": "style.css",
+                        "tooltip": "/app/css/style.css",
                         "ace": {}
                     },
                     "editorType": "ace",
@@ -194,7 +274,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/dapp/contracts/RateEx.sol"
+            "/app/css/style.css"
         ]
     }
 }

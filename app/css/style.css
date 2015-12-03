@@ -25,16 +25,27 @@ body {
 }
   
 
+.navbar-inverse{
+background-color:#8262A7!important;}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #FFF!important;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #C593FF!important;
+}
   
 #phoneWrapper{
   display:table;
+  margin:auto;
   border: 1px solid #82629D;
   background:#FEFEFE;
   min-width:320px;
   height:100%;
   border-radius:5px;
   padding:10px;
-  margin:10px;
+
      
      font-family:'Lato-light';
 }
@@ -49,7 +60,7 @@ body {
 }
 #diallingCode{
   display:table-Cell;
-  width:15%;
+  width:20%;
   margin-right:10px;
   border-radius:7px;
   height:44px;
@@ -106,6 +117,16 @@ body {
   color:#82629D;
   }  
   
+.makeCall{
+    background-color: #82629D!important;
+  width:100%;
+  border-radius:7px;
+  height:44px;
+  font-size: 22px; 
+  color:#FFF!important;
+  border:none!important;
+}
+  
 input{
   padding-left:10px;
   background-color:rgba(130, 98, 157, 0.14);
@@ -134,3 +155,4 @@ input{
 
 :-ms-input-placeholder {  
    color: rgba(130, 98, 157, 0.50);
+}
