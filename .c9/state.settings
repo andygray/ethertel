@@ -1,47 +1,37 @@
 {
-    "ace": {
-        "search": {
-            "@backwards": "false",
-            "@highlightmatches": "true",
-            "@matchcase": "false",
-            "@preservecase": "false",
-            "@regex": "false",
-            "@wholeword": "false",
-            "@wraparound": "true"
-        }
-    },
     "console": {
         "@expanded": true,
-        "@height": 180,
+        "@height": 323,
         "@maximized": "false",
         "json()": {
             "meta": {
                 "accessList": [
-                    "tab1",
-                    "tab5"
+                    "tab0",
+                    "tab2"
                 ]
             },
             "name": "pane1",
             "nodes": [
                 {
                     "type": "tab",
-                    "name": "tab1",
+                    "name": "tab0",
                     "path": "",
                     "className": [
-                        "tab1",
+                        "tab0",
                         "focus"
                     ],
                     "document": {
                         "changed": false,
-                        "meta": {},
+                        "meta": {
+                            "timestamp": 1449134621713
+                        },
                         "filter": true,
-                        "title": "bash - \"8c866439cfa9\"",
-                        "tooltip": "bash - \"8c866439cfa9\"",
+                        "title": "Terminal",
                         "terminal": {
-                            "id": "devel_849",
+                            "id": "devel_788",
                             "cwd": "",
-                            "width": 1203,
-                            "height": 154
+                            "width": 1249,
+                            "height": 297
                         }
                     },
                     "editorType": "terminal",
@@ -49,15 +39,15 @@
                 },
                 {
                     "type": "tab",
-                    "name": "tab5",
+                    "name": "tab2",
                     "path": "",
                     "className": [],
                     "document": {
-                        "changed": false,
                         "meta": {},
                         "filter": true,
                         "title": "Ethereum Console",
-                        "ethereum-console": {}
+                        "ethereum-console": {},
+                        "changed": false
                     },
                     "editorType": "ethereum-console",
                     "active": false
@@ -79,19 +69,16 @@
             "@ace": 1,
             "@acestatus": 1,
             "@divider": 4,
-            "@document": 5,
+            "@document": 6,
             "@ethereum-console": 1,
             "@form": 5,
             "@immediate": 1,
             "@menu": 5,
             "@menuitem": 13,
             "@pane": 2,
-            "@preferences": 1,
             "@session": 5,
-            "@tab": 4,
-            "@tree": 2,
-            "@undoManager": 5,
-            "@welcome": 1
+            "@tab": 2,
+            "@undoManager": 6
         }
     },
     "findinfiles": {
@@ -108,13 +95,13 @@
     },
     "panecycle": {
         "json()": [
-            "tab1",
             "tab0"
         ]
     },
     "panels": {
         "@active-left": "tree",
         "@active-right": "none",
+        "@width-right": 406,
         "collab": {
             "@enabled": "true",
             "@name": "collab"
@@ -153,102 +140,25 @@
         "expanded": {
             "json()": [
                 "/",
-                "/dapp",
-                "/dapp/contracts",
-                "/dapp/_pre",
-                "/app/abi",
-                "/app/css",
+                "/app",
+                "/app/template",
                 "/app/js",
                 "/app/js/constants",
-                "/app/js/controllers",
-                "/app/js/services",
-                "/app/template"
+                "/app/css"
             ]
         }
     },
     "recentfiles": {
         "json()": []
     },
-    "search-history": {
-        "search": {
-            "json()": [
-                "destinations"
-            ]
-        }
-    },
     "tabs": {
         "json()": {
-            "focus": "tab1",
+            "focus": "tab0",
             "meta": {
-                "accessList": [
-                    "tab0",
-                    "tab2",
-                    "tab3"
-                ]
+                "accessList": []
             },
             "name": "pane0",
-            "nodes": [
-                {
-                    "type": "tab",
-                    "name": "tab0",
-                    "path": "/dapp/contracts/RateEx.sol",
-                    "className": [
-                        "tab0"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1449076911722
-                        },
-                        "filter": true,
-                        "title": "RateEx.sol",
-                        "tooltip": "/dapp/contracts/RateEx.sol",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": true
-                },
-                {
-                    "type": "tab",
-                    "name": "tab2",
-                    "path": "/dapp/contracts/RateCard.sol",
-                    "className": [
-                        "tab2"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1449064481164
-                        },
-                        "filter": true,
-                        "title": "RateCard.sol",
-                        "tooltip": "/dapp/contracts/RateCard.sol",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab3",
-                    "path": "/dapp/contracts/std.sol",
-                    "className": [
-                        "tab3"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1448914431293
-                        },
-                        "filter": true,
-                        "title": "std.sol",
-                        "tooltip": "/dapp/contracts/std.sol",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                }
-            ],
+            "nodes": [],
             "skin": "editor_tab",
             "skinset": "default",
             "type": "pane"
@@ -256,7 +166,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/dapp/contracts/RateEx.sol"
+            "/app/js/keyPad.js"
         ]
     }
 }
