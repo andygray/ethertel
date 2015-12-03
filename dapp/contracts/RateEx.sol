@@ -57,9 +57,11 @@ contract RateEx is owned, named("RateEx") {
         addDestination(91);
         
         // default rate cards
-        addRateCard(0xdf315f7485c3a86eb692487588735f224482abe3);
-        addRateCard(0x17956ba5f4291844bc25aedb27e69bc11b5bda39);
-        
+        addRateCard(0x17956ba5f4291844bc25aedb27e69bc11b5bda39); // alpha
+        addRateCard(0xdf315f7485c3a86eb692487588735f224482abe3); // beta
+        addRateCard(0xaefa01276783e1436e5b461c099edccb0448dcf6); // xyz
+        addRateCard(0x06b179aabf198ced0f98c8ceca905a920a137ef4); // gltd
+       
         // add a few mock calls
         bytes32 chash1 = addCall(0x0ec96244d9efcf1711b7383644abbe0f31bc5fcc, 
             0xdf315f7485c3a86eb692487588735f224482abe3, 
@@ -81,6 +83,12 @@ contract RateEx is owned, named("RateEx") {
     function numberOfRateCards() constant returns (uint count) {
         return rateCards.length;
     }
+    
+    function getRateCardDetails(uint index) constant returns (address cardAddress, bytes32 name) {
+        if (rateCards[index] == 0x0) throw;
+        
+        return (rateCards[index], RateCard(rateCards[index]).name());    
+    } 
     
     function numberOfCalls() constant returns (uint count) {
         return calls.length;
@@ -216,5 +224,10 @@ contract RateEx is owned, named("RateEx") {
         if (lowest == 999999) throw;
         
         return (lowest * timeInSecs, lowestCard); 
+    }
+    
+    // how much the RateEx is holding in escrow
+    function getBalance() returns (uint bal) {
+        return this.balance; 
     }
 }

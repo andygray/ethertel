@@ -2,5 +2,5 @@
 
 mbApp.constants
     .constant('Web3Config', {
-        PROVIDER: 'http://ethertel.on.ether.camp' + ':8555/sandbox/' + 'fe29a5d4e99ccd02b906080d2dd4cad7db51af7e'
+        PROVIDER: 'http://ethertel.on.ether.camp' + ':8555/sandbox/' + '7337d19e9cbae084c6132c70c63a0e1efff5ff2e'
     });

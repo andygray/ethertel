@@ -5,7 +5,7 @@
 contract abstract {}
 
 contract owned is abstract {
-  address owner;
+  address public owner;
   function owned() {
     owner = msg.sender;
   }
