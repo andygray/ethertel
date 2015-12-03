@@ -4,11 +4,12 @@
 
     mbApp.services.factory('RateEx', RateEx);
 
-    function RateEx(AppConfig, ContractService, AuthService) {
+    function RateEx($q, _, AppConfig, ContractService, AuthService) {
 
         return {
             rateCardCount: rateCardCount,
             getRateCardDetails: getRateCardDetails,
+            getAllRateCard: getAllRateCard,
             lowestRateForCountryCode: lowestRateForCountryCode,
             quote: quote,
             addCall: addCall,
@@ -29,6 +30,36 @@
                     return res.toNumber();
                 }
             });
+        }
+
+        /**
+         * Produces pair's of
+         * <code>
+         *     bytes32 public name;
+         *     bytes32 public domain;
+         *     mapping (uint => uint) public rates;
+         * </code>
+         */
+        function getAllRateCard() {
+            return this.rateCardCount()
+                .then(function (count) {
+                    console.log("Count", count);
+
+                    var resolves =
+                        _.chain(0).range(count)
+                            .value()
+                            .map(this.getRateCardDetails);
+
+                    return $q.all(resolves)
+                        .then(function (results) {
+                            console.log(results);
+                            return results;
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                            return [];
+                        })
+                }.bind(this));
         }
 
         function getRateCardDetails(index) {
