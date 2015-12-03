@@ -34,6 +34,17 @@
             <button class="buttonStyle" ng-click="PayphoneController.quote()">Quote</button>
         </div>
     </div>
+
+    <div ng-if="PayphoneController.myQuote">
+        <div>
+            <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
+            <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
+            <h4>Estimate Mins: {{ ::PayphoneController.estimatedMins }}</h4>
+            <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
+            <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
+            <h4><button>CALL</button></h4>
+        </div>
+    </div>
 </div>
     
     
