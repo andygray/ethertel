@@ -4,7 +4,7 @@
 
     mbApp.services.factory('RateEx', RateEx);
 
-    function RateEx($q, _, AppConfig, ContractService, AuthService) {
+    function RateEx($q, $log, _, AppConfig, ContractService, AuthService) {
 
         return {
             rateCardCount: rateCardCount,
@@ -28,7 +28,9 @@
         function rateCardCount() {
             return ContractService.RateEx().with(defaultContext()).numberOfRateCards().then(function (res) {
                 if (res) {
-                    return res.toNumber();
+                    var count = res.toNumber();
+                    $log.debug("Total Rate Card Count [%s]", count);
+                    return count;
                 }
             });
         }
@@ -36,18 +38,19 @@
         function getQualityForRateCard(rateCardAddress) {
             return ContractService.RateEx().with(defaultContext()).qualityForRateCard(rateCardAddress).then(function (res) {
                 if (res) {
-                    return res.toNumber();
+                    var quality = res.toNumber();
+                    $log.debug("Rate Card [%s] Quality [%d]", rateCardAddress, quality);
+                    return quality;
                 }
             });
         }
 
         /**
-         * Array of Object { name: domain }
+         * Array of Object { name, domain, index }
          */
         function getAllRateCard() {
             return this.rateCardCount()
                 .then(function (count) {
-                    console.log("Count", count);
 
                     var resolves = _.chain(0).range(count)
                         .value()
@@ -55,15 +58,15 @@
 
                     return $q.all(resolves)
                         .then(function (results) {
-                            console.log('All Rate Cards', results);
                             /**
                              *  bytes32 public name;
                              *  bytes32 public domain;
                              *  mapping (uint => uint) public rates;
                              */
-                            return results.map(function (rateCardRaw) {
+                            return _.map(results, function (rateCardRaw, index) {
                                 // Translate it into something useful!
                                 return {
+                                    index: index,
                                     name: rateCardRaw[0],
                                     domain: rateCardRaw[1]
                                 }
