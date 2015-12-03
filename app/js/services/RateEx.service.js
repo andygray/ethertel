@@ -4,7 +4,7 @@
 
     mbApp.services.factory('RateEx', RateEx);
 
-    function RateEx($q, $log, _, AppConfig, ContractService, AuthService) {
+    function RateEx($q, $log, _, Web3Service, AppConfig, ContractService, AuthService) {
 
         return {
             rateCardCount: rateCardCount,
@@ -68,7 +68,8 @@
                                 return {
                                     index: index,
                                     name: rateCardRaw[0],
-                                    domain: rateCardRaw[1]
+                                    // FIXME - what determines order of properties i.e. signature above states 0 index is name however here its index 1?
+                                    domain: Web3Service.toAscii(rateCardRaw[1])
                                 }
                             });
                         })
