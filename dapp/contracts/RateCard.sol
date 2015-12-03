@@ -1,11 +1,6 @@
 import "std.sol";
 
-contract RateCard is abstract {
-    
-    // struct Rate {
-    //     uint rateInWei;
-    //     uint maxAmountInWei;
-    // }
+contract RateCard is abstract, owned, mortal {
     
     bytes32 public name;
     bytes32 public domain;
@@ -14,6 +9,7 @@ contract RateCard is abstract {
     
     event RateInit(address owner, bytes32 name);
     event RateAdded(uint countryCode, uint rateInWei);
+    event RateUpdated(uint countryCode, uint rateInWei);
     
     function RateCard(bytes32 _name, bytes32 _domain) {
         name = _name;
@@ -23,9 +19,13 @@ contract RateCard is abstract {
     }
     
     function addRate(uint countryCode, uint rateInWei) {
-    //   rates[countryCode] = Rate({rateInWei: rateInWei, maxAmountInWei: maxAmountInWei}); 
-      rates[countryCode] =  rateInWei;
-      RateAdded(countryCode, rateInWei);
+        rates[countryCode] =  rateInWei;
+        RateAdded(countryCode, rateInWei);
+    }
+    
+    function updateRate(uint countryCode, uint rateInWei) {
+        rates[countryCode] =  rateInWei;
+        RateUpdated(countryCode, rateInWei);
     }
     
     function getBalance() returns (uint bal) {
@@ -33,7 +33,7 @@ contract RateCard is abstract {
     }
 }
 
-contract RateCardAlpha is RateCard(0x616c706861000000000000000000000000000000000000000000000000000000, 0x7369702e676c74642e6e65740000000000000000000000000000000000000000), owned, mortal {
+contract RateCardAlpha is RateCard(0x616c706861000000000000000000000000000000000000000000000000000000, 0x7369702e676c74642e6e65740000000000000000000000000000000000000000) {
    function RateCardAlpha() { 
         //uk
         addRate(44, 6);
@@ -46,7 +46,7 @@ contract RateCardAlpha is RateCard(0x616c706861000000000000000000000000000000000
    }
 }
 
-contract RateCardBeta is RateCard(0x6265746100000000000000000000000000000000000000000000000000000000, 0x7369702e78797a2e6e6574000000000000000000000000000000000000000000), owned, mortal {
+contract RateCardBeta is RateCard(0x6265746100000000000000000000000000000000000000000000000000000000, 0x7369702e78797a2e6e6574000000000000000000000000000000000000000000) {
        function RateCardBeta() { 
         //uk
         addRate(44, 2);
@@ -59,7 +59,7 @@ contract RateCardBeta is RateCard(0x62657461000000000000000000000000000000000000
    }
 }
 
-contract RateCardGltd is RateCard(0x474c544400000000000000000000000000000000000000000000000000000000, 0x7369702e676c74642e6e65740000000000000000000000000000000000000000), owned, mortal {
+contract RateCardGltd is RateCard(0x474c544400000000000000000000000000000000000000000000000000000000, 0x7369702e676c74642e6e65740000000000000000000000000000000000000000) {
    function RateCardGltd() { 
         //uk
         addRate(44, 2);
@@ -72,7 +72,7 @@ contract RateCardGltd is RateCard(0x474c5444000000000000000000000000000000000000
    }
 }
 
-contract RateCardXyz is RateCard(0x58595a0000000000000000000000000000000000000000000000000000000000, 0x7369702e78797a2e6e6574000000000000000000000000000000000000000000), owned, mortal {
+contract RateCardXyz is RateCard(0x58595a0000000000000000000000000000000000000000000000000000000000, 0x7369702e78797a2e6e6574000000000000000000000000000000000000000000) {
        function RateCardXyz() { 
         //uk
         addRate(44, 3);

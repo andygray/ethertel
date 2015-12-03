@@ -69,19 +69,6 @@ contract RateEx is owned, named("RateEx") {
         addRateCard(0xdf315f7485c3a86eb692487588735f224482abe3); // beta
         addRateCard(0xaefa01276783e1436e5b461c099edccb0448dcf6); // xyz
         addRateCard(0x06b179aabf198ced0f98c8ceca905a920a137ef4); // gltd
-       
-        // add a few mock calls
-        bytes32 chash1 = addCall(0x17956ba5f4291844bc25aedb27e69bc11b5bda39, 
-            1, 
-            2024561333);
-        
-        completeCall(chash1, 64);
-        
-        bytes32 chash2 = addCall(0x06b179aabf198ced0f98c8ceca905a920a137ef4, 
-            44, 
-            7930123234);
-        
-        completeCall(chash2, 128);
     }
     
     function numberOfRateCards() constant returns (uint count) {
@@ -155,11 +142,38 @@ contract RateEx is owned, named("RateEx") {
         return cHash;    
     }
     
+    function validateCall(bytes32 cHash) constant returns (uint maxInSeconds, uint countryCode, uint amountInWei) {
+        if (callHashIndex[cHash] == 0) {
+            return (0, 0, 0);
+        }
+        
+        // we store length so index is one less
+        uint index = callHashIndex[cHash] - 1; 
+        
+        // only rate card owner can verify
+        address rc = calls[index].rateCard;
+        if (RateCard(rc).owner() != msg.sender) {
+            return (0, 0, 0);  
+        }
+        
+        // already completed
+        if (calls[index].completed == true) {
+            return (0, 0, 0);   
+        }
+        
+        return (calls[index].maxInSeconds, calls[index].countryCode, calls[index].amountInWei);
+    }
+    
     function completeCall(bytes32 cHash, uint callInSeconds) {
         
         if (callHashIndex[cHash] == 0) throw;
         
-        uint index = callHashIndex[cHash] - 1; // we store length so index is one less
+        // we store length so index is one less
+        uint index = callHashIndex[cHash] - 1; 
+        
+        // only rate card owner can complete
+        address rc = calls[index].rateCard;
+        if (RateCard(rc).owner() != msg.sender) throw;
         
         calls[index].callInSeconds = callInSeconds;
         calls[index].costInWei = calls[index].rate * callInSeconds;
