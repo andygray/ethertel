@@ -5,7 +5,7 @@
     mbApp.controllers.controller('ExchangeController', ExchangeController);
 
     // EventService needed to hook up events!
-    function ExchangeController($log, $rootScope, $scope, AuthService, RateEx, SupportedDestinations, SupportedRateCards, EventService) {
+    function ExchangeController($log, $rootScope, $scope, _, AuthService, RateEx, SupportedDestinations, SupportedRateCards, EventService) {
 
         var vm = this;
 
@@ -18,6 +18,13 @@
 
         RateEx.getAllRateCard().then(function (rateCards) {
             vm.rateCards = rateCards;
+            _.forEach(rateCards, function (rateCard) {
+                // ANDY - TODO - tried this with either the name or the domain of a rate plan not sure its working through - they both return zero?
+                RateEx.getQualityForRateCard(rateCard.name)
+                    .then(function (quality) {
+                        console.log('quality for rate card', quality);
+                    });
+            })
         });
 
         // hmmm?

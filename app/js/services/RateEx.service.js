@@ -10,6 +10,7 @@
             rateCardCount: rateCardCount,
             getRateCardDetails: getRateCardDetails,
             getAllRateCard: getAllRateCard,
+            getQualityForRateCard: getQualityForRateCard,
             lowestRateForCountryCode: lowestRateForCountryCode,
             quote: quote,
             addCall: addCall,
@@ -26,6 +27,14 @@
 
         function rateCardCount() {
             return ContractService.RateEx().with(defaultContext()).numberOfRateCards().then(function (res) {
+                if (res) {
+                    return res.toNumber();
+                }
+            });
+        }
+
+        function getQualityForRateCard(rateCardAddress) {
+            return ContractService.RateEx().with(defaultContext()).qualityForRateCard(rateCardAddress).then(function (res) {
                 if (res) {
                     return res.toNumber();
                 }
