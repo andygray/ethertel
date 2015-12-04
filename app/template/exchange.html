@@ -30,14 +30,27 @@
 
     <div class="row">
         <div class="col-sm-3" ng-repeat="rateCard in ExchangeController.rateCards">
-            <div class="panel panel-success">
+            <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Name: {{ rateCard.name }}</h3>
+                    <h3 class="panel-title">{{ rateCard.name }}</h3>
                 </div>
                 <div class="panel-content">
                     <p class="text-center">
-                        <span>Domain: {{ ::rateCard.domain }}</span>
+                        <span>UK</span>
+                        <span style="font-size: 150%">x</span>
+                        <span class="text-muted">WEI per SECOND</span>
+                        <br/>
+                        <span>USA</span>
+                        <span style="font-size: 150%">x</span>
+                        <span class="text-muted">WEI per SECOND</span>
+                        <br/>
+                        <span>India</span>
+                        <span style="font-size: 150%">x</span>
+                        <span class="text-muted">WEI per SECOND</span>
                     </p>
+                </div>
+                <div class="panel-footer">
+                    <span class="text-muted">Domain:</span> {{ ::rateCard.domain }}
                 </div>
             </div>
         </div>

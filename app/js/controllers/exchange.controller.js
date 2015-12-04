@@ -20,8 +20,6 @@
             $log.debug('Found All RateCards', rateCards);
             vm.rateCards = rateCards;
             _.forEach(rateCards, function (rateCard) {
-                // FIXME - tried this with either the rateCard.name or the rateCard.domain from the rate plans looked up
-                // FIXME - not sure that its correctly working through - they both return zero?
                 RateEx.getQualityForRateCard(rateCard.name)
                     .then(function (quality) {
                         $log.debug('quality for rate card', quality);
