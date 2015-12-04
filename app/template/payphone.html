@@ -50,8 +50,8 @@
                 <h4>Estimate Mins: {{ ::PayphoneController.estimatedMins }}</h4>
                 <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
                 <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
-                <h4>Rate: {{ ::PayphoneController.rate }}</h4>
-                <h4>Quality: <span class="badge">{{ ::PayphoneController.quality }}</span></h4>
+                <h4>Rate: {{ ::PayphoneController.myQuote.rate }} WEI per Second</h4>
+                <!--<h4>Quality: <span class="badge">{{ ::PayphoneController.quality }}</span></h4>-->
             </div>
             <div class="form-group" ng-show="PayphoneController.isAnonymous">
                 <input ng-model="PayphoneController.seed" type="password" class="form-control"
@@ -94,6 +94,7 @@
                 <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
                 <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
                 <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
+                <h4>Rate: {{ ::PayphoneController.myQuote.rate }} WEI per Second</h4>
                 <h4>Receipt: {{ ::PayphoneController.receipt }}</h4>
             </div>
         </div>

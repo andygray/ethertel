@@ -1,6 +1,12 @@
 'use strict';
 
+var SANDBOX_ID = '27fe573a471c886bea87db6af604c5086d2e081d';
+
 mbApp.constants
     .constant('Web3Config', {
-        PROVIDER: 'http://ethertel.on.ether.camp' + ':8555/sandbox/' + 'c5b7415b69197bdc561108fb3477bab15c91b83f'
+        SANDBOX_ID: SANDBOX_ID,
+        /**
+         * The endpoint
+         */
+        PROVIDER: 'http://ethertel.on.ether.camp' + ':8555/sandbox/' + SANDBOX_ID
     });

@@ -149,7 +149,7 @@
         }
     },
     "projecttree": {
-        "@scrollpos": 4,
+        "@scrollpos": 24,
         "@showfs": true,
         "expanded": {
             "json()": [

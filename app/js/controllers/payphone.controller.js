@@ -31,7 +31,9 @@
                     vm.myQuote = {};
                     _.extend(vm.myQuote, {
                         estimatedAmountInWei: res.estimatedAmountInWei,
-                        rateCard: res.rateCard
+                        rateCard: res.rateCard,
+                        rate: res.rate,
+                        quality: res.quality
                     });
 
                     vm.weiValue = res.estimatedAmountInWei;
@@ -61,7 +63,7 @@
         // get my calls from event on the block chain
         vm.attemptedCalls = [];
         var event = ContractService.RateEx().original.AddCallTx({}, {fromBlock: 0, toBlock: 'latest'});
-        event.watch(function(error, result){
+        event.watch(function (error, result) {
             if (!error) {
                 //console.log(result.args);
                 if (result.args.caller === vm.address) {

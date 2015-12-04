@@ -77,9 +77,9 @@ contract RateEx is owned, named("RateEx") {
     
     function getRateCardDetails(uint index) constant returns (address cardAddress, bytes32 name, bytes32 domain) {
         if (rateCards[index] == 0x0) throw;
-        
+
         return (rateCards[index], RateCard(rateCards[index]).name(), RateCard(rateCards[index]).domain());    
-    } 
+    }
     
     // really should access RateCard direct
     // temp?
