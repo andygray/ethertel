@@ -20,6 +20,8 @@ mbApp.constants
         }
     ])
     // temp hard code
+    // FIXME - this have name - how to get this without hard coding it?
+    // FIXME - does this require a new property on RateCard i.e. RateCard(bytes32 _name, bytes32 _domain, bytes32 _humanReadable)
     .constant('SupportedRateCards', {
         '0x17956ba5f4291844bc25aedb27e69bc11b5bda39': 'RateCardAlpha',
         '0xdf315f7485c3a86eb692487588735f224482abe3': 'RateCardBeta',

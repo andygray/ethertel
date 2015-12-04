@@ -142,7 +142,6 @@
                         dealId: data[4],
                         remainingAmount: data[5]
                     });
-
                 });
 
             return dfd.promise;

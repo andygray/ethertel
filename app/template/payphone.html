@@ -1,8 +1,8 @@
-<div id="phoneWrapper" class="col-sm-6">
+<div id="phoneWrapper">
     <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote && !PayphoneController.callQuoting">
         <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations"
                 ng-model="PayphoneController.countryCode" class="buttonStyle">
-            <option value="" selected disabled>Select Country</option>
+            <option value="" selected disabled> Select Country</option>
         </select>
 
         <div ng-if="PayphoneController.countryCode">
@@ -30,7 +30,11 @@
                     <div class="0key pad" ng-click="PayphoneController.keypad('0')">0</div>
                     <div class="pluskey pad">+</div>
                 </div>
-                <input type="number" ng-model="PayphoneController.estimatedMins" placeholder="estimated mins" required/>
+                <div id="estMins">
+                    <div class="mins">Mins</div>
+                    <input type="number" ng-model="PayphoneController.estimatedMins" placeholder="Estimated Mins"
+                           required/>
+                </div>
                 <button class="buttonStyle" ng-click="PayphoneController.quote()" ng-disabled="!quoteForm.$valid">
                     Quote
                 </button>
@@ -40,14 +44,15 @@
 
     <div ng-if="PayphoneController.myQuote && !PayphoneController.callAdding && !PayphoneController.callAdded">
         <div>
-            <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
-            <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
-            <h4>Estimate Mins: {{ ::PayphoneController.estimatedMins }}</h4>
-            <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
-            <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
-            <h4>Rate: {{ ::PayphoneController.rate }}</h4>
-            <h4>Quality: <span class="badge">{{ ::PayphoneController.quality }}</span></h4>
-
+            <div class="quote">
+                <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
+                <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
+                <h4>Estimate Mins: {{ ::PayphoneController.estimatedMins }}</h4>
+                <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
+                <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
+                <h4>Rate: {{ ::PayphoneController.rate }}</h4>
+                <h4>Quality: <span class="badge">{{ ::PayphoneController.quality }}</span></h4>
+            </div>
             <div class="form-group" ng-show="PayphoneController.isAnonymous">
                 <input ng-model="PayphoneController.seed" type="password" class="form-control"
                        placeholder="Input seed phrase ...">
@@ -55,37 +60,52 @@
             </div>
             <h4 ng-show="!PayphoneController.isAnonymous">
                 <input ng-model="PayphoneController.weiValue" type="number"/>
-                <small>{{ PayphoneController.address }}</small>
-                <button class="makeCall" ng-click="PayphoneController.addCall()">Make Call</button>
+                <button class="makeCall" ng-click="PayphoneController.addCall()">Call</button>
             </h4>
         </div>
     </div>
 
-    <div ng-if="PayphoneController.callQuoting">
-        <h1>Spinner thingy - Building Quote!!</h1>
+    <div class="updateContainer" ng-if="PayphoneController.callQuoting">
+        <h1 class="update">Building Quote</h1>
+
+        <div class="loading">
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+        </div>
     </div>
 
-    <div ng-if="PayphoneController.myQuote && PayphoneController.callAdding">
-        <h1>Spinner thingy - Confirming Call!!</h1>
+    <div class="updateContainer" ng-if="PayphoneController.myQuote && PayphoneController.callAdding">
+        <h1 class="update">Confirming Call</h1>
+
+        <div class="loading">
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+        </div>
     </div>
 
     <div ng-if="PayphoneController.myQuote && PayphoneController.callAdded">
-        <h1>CONFIRMED</h1>
-        <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
-        <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
-        <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
-        <h4>Receipt: {{ ::PayphoneController.receipt }}</h4>
-    </div>
-
-    <hr/>
-</div>
-<div class="col-sm-6">
-    <h3>Attempted Calls</h3>
-    <div ng-repeat="ac in PayphoneController.attemptedCalls" class="text-center">
-        {{ ::ac.timestamp * 1000 | date }} +{{ ::ac.countryCode }} {{ ::ac.telephoneNumber }} <span class="text-muted">rate/rate card</span>
-        {{ ::ac.rate }} {{ ::PayphoneController.getPrettyRateCard(ac.rateCard) }}
+        <div>
+            <div class="confirmed">
+                <h1>Confirmed</h1>
+                <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
+                <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
+                <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
+                <h4>Receipt: {{ ::PayphoneController.receipt }}</h4>
+            </div>
+        </div>
     </div>
 </div>
+<!--<div class="col-sm-6">-->
+<!--<h3>Attempted Calls</h3>-->
+<!--<div ng-repeat="ac in PayphoneController.attemptedCalls" class="text-center">-->
+<!--{{ ::ac.timestamp * 1000 | date }} +{{ ::ac.countryCode }} {{ ::ac.telephoneNumber }} <span class="text-muted">rate/rate card</span>-->
+<!--{{ ::ac.rate }} {{ ::PayphoneController.getPrettyRateCard(ac.rateCard) }}-->
+<!--</div>-->
+<!--</div>-->
     
 
 

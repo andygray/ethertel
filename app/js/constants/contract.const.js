@@ -68,6 +68,27 @@ mbApp.constants
                     "type": "function"
                 },
                 {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "rateCard",
+                            "type": "address"
+                        },
+                        {
+                            "name": "countryCode",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "getRateForRateCard",
+                    "outputs": [
+                        {
+                            "name": "rate",
+                            "type": "uint256"
+                        }
+                    ],
+                    "type": "function"
+                },
+                {
                     "constant": false,
                     "inputs": [],
                     "name": "getBalance",
@@ -134,8 +155,16 @@ mbApp.constants
                             "type": "uint256"
                         },
                         {
+                            "name": "lowestRate",
+                            "type": "uint256"
+                        },
+                        {
                             "name": "lowestRateCardAddress",
                             "type": "address"
+                        },
+                        {
+                            "name": "quality",
+                            "type": "uint256"
                         }
                     ],
                     "type": "function"
@@ -432,6 +461,10 @@ mbApp.constants
                         },
                         {
                             "name": "name",
+                            "type": "bytes32"
+                        },
+                        {
+                            "name": "domain",
                             "type": "bytes32"
                         }
                     ],

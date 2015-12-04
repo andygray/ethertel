@@ -77,9 +77,10 @@ contract RateEx is owned, named("RateEx") {
     
     function getRateCardDetails(uint index) constant returns (address cardAddress, bytes32 name) {
         if (rateCards[index] == 0x0) throw;
-        
-        return (rateCards[index], RateCard(rateCards[index]).name());    
-    } 
+
+		// FIXME - ANDY can we not return the type RateCard here OR RateCard.address() OR is RateCard.name() actually the address?
+        return (rateCards[index], RateCard(rateCards[index]).name());
+    }
     
     // really should access RateCard direct
     // temp?
