@@ -18,11 +18,13 @@
         function addEvents(events, contract) {
             _.each(events, function(metadata, type) {
                 contract.on(type, function(err, resp) {
-                    var args = resp.args;
-                    var name = metadata.namespace;
+                    if (!err) {
+                        var args = resp.args;
+                        var name = metadata.namespace;
 
-                    $log.debug('event -', name, args);
-                    $rootScope.$broadcast(name, args);
+                        $log.debug('event -', name, args);
+                        $rootScope.$broadcast(name, args);
+                    }
                 });
             });
         }
