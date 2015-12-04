@@ -46,7 +46,7 @@
         }
 
         /**
-         * Array of Object { name, domain, index }
+         * Array of Object { address, name, domain, index }
          */
         function getAllRateCard() {
             return this.rateCardCount()
@@ -58,18 +58,13 @@
 
                     return $q.all(resolves)
                         .then(function (results) {
-                            /**
-                             *  bytes32 public name;
-                             *  bytes32 public domain;
-                             *  mapping (uint => uint) public rates;
-                             */
                             return _.map(results, function (rateCardRaw, index) {
                                 // Translate it into something useful!
                                 return {
                                     index: index,
-                                    name: rateCardRaw[0],
-                                    // FIXME - what determines order of properties i.e. signature above states 0 index is name however here its index 1?
-                                    domain: Web3Service.toAscii(rateCardRaw[1])
+                                    address: rateCardRaw[0],
+                                    name: Web3Service.toAscii(rateCardRaw[1]),
+                                    domain: Web3Service.toAscii(rateCardRaw[2])
                                 }
                             });
                         })
@@ -77,6 +72,7 @@
                             console.error(error);
                             return [];
                         })
+
                 }.bind(this));
         }
 
@@ -105,7 +101,9 @@
                 if (res) {
                     return {
                         estimatedAmountInWei: res[0].toNumber(),
-                        rateCard: res[1]
+                        rate: res[1].toNumber(),
+                        rateCard: res[2],
+                        quality: res[3].toNumber()
                     };
                 }
             });
