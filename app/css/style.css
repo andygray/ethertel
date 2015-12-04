@@ -142,6 +142,7 @@ input {
 
 select {
     font-size: 20px !important;
+    padding-left:10px;
     -webkit-appearance:none 
 }
 

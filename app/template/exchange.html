@@ -4,11 +4,12 @@
 
     <p>No of Rate Cards: <span class="badge">{{ ExchangeController.rateCardCount }}</span></p>
 
-    <p>Exchange Balance: <span class="badge">{{ ExchangeController.balance }}</span></p>
+    <!--<p>Exchange Balance: <span class="badge">{{ ExchangeController.balance }}</span></p>-->
 
     <hr/>
 
     <div class="row">
+        <h2>Lowest Rates</h2>
         <div class="col-sm-3" ng-repeat="dest in ExchangeController.destinations">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -22,13 +23,14 @@
                 </div>
                 <div class="panel-footer">
                     <span class="text-muted">Provider:</span> {{ ExchangeController.getPrettyRateCard(dest.rateCard) }}<br/>
-                    <span class="text-muted">Quality:</span> <span class="badge">{{ dest.quality }}</span><br/>
+                    <!--<span class="text-muted">Quality:</span> <span class="badge">{{ dest.quality }}</span><br/>-->
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
+        <h2>All Rate Providers</h2>
         <div class="col-sm-3" ng-repeat="rateCard in ExchangeController.rateCards">
             <div class="panel panel-info">
                 <div class="panel-heading">

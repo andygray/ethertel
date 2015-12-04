@@ -1,3 +1,4 @@
+<div class="col-sm-6">
 <div id="phoneWrapper">
     <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote && !PayphoneController.callQuoting">
         <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations"
@@ -100,13 +101,14 @@
         </div>
     </div>
 </div>
-<!--<div class="col-sm-6">-->
-<!--<h3>Attempted Calls</h3>-->
-<!--<div ng-repeat="ac in PayphoneController.attemptedCalls" class="text-center">-->
-<!--{{ ::ac.timestamp * 1000 | date }} +{{ ::ac.countryCode }} {{ ::ac.telephoneNumber }} <span class="text-muted">rate/rate card</span>-->
-<!--{{ ::ac.rate }} {{ ::PayphoneController.getPrettyRateCard(ac.rateCard) }}-->
-<!--</div>-->
-<!--</div>-->
+</div>
+<div class="col-sm-6">
+<h3>Attempted Calls</h3>
+<div ng-repeat="ac in PayphoneController.attemptedCalls" class="text-center">
+{{ ::ac.timestamp * 1000 | date }} +{{ ::ac.countryCode }} {{ ::ac.telephoneNumber }} <span class="text-muted">rate/rate card</span>
+{{ ::ac.rate }} {{ ::PayphoneController.getPrettyRateCard(ac.rateCard) }}
+</div>
+</div>
     
 
 
