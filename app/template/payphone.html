@@ -2,7 +2,7 @@
     <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote && !PayphoneController.callQuoting">
         <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations"
                 ng-model="PayphoneController.countryCode" class="buttonStyle">
-            <option value="" selected disabled>Select Country</option>
+            <option value="" selected disabled> Select Country</option>
         </select>
 
         <div ng-if="PayphoneController.countryCode">
