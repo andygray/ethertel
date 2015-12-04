@@ -3,25 +3,44 @@
     <h1>EtherTel Exchange</h1>
 
     <p>No of Rate Cards: <span class="badge">{{ ExchangeController.rateCardCount }}</span></p>
+
     <p>Exchange Balance: <span class="badge">{{ ExchangeController.balance }}</span></p>
 
     <hr/>
 
-    <div class="col-sm-3" ng-repeat="dest in ExchangeController.destinations">
-        <div class="panel panel-success" >
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ ::dest.name }}</h3>
-            </div>
-            <div class="panel-content">
-                <p class="text-center">
-                    <span style="font-size: 150%">{{ ::dest.rate }}</span>
-                    <span class="text-muted">WEI per SECOND</span>
-                </p>
-            </div>
-            <div class="panel-footer">
-                <span class="text-muted">Provider:</span> {{ ExchangeController.getPrettyRateCard(dest.rateCard) }}<br/>
-                <span class="text-muted">Quality:</span> <span class="badge">{{ dest.quality }}</span><br/>
+    <div class="row">
+        <div class="col-sm-3" ng-repeat="dest in ExchangeController.destinations">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ ::dest.name }}</h3>
+                </div>
+                <div class="panel-content">
+                    <p class="text-center">
+                        <span style="font-size: 150%">{{ ::dest.rate }}</span>
+                        <span class="text-muted">WEI per SECOND</span>
+                    </p>
+                </div>
+                <div class="panel-footer">
+                    <span class="text-muted">Provider:</span> {{ ExchangeController.getPrettyRateCard(dest.rateCard) }}<br/>
+                    <span class="text-muted">Quality:</span> <span class="badge">{{ dest.quality }}</span><br/>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-sm-3" ng-repeat="rateCard in ExchangeController.rateCards">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Name: {{ rateCard.name }}</h3>
+                </div>
+                <div class="panel-content">
+                    <p class="text-center">
+                        <span>Domain: {{ ::rateCard.domain }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
