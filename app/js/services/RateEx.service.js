@@ -20,7 +20,13 @@
 
         function getBalance() {
             return ContractService.RateEx().with(defaultContext()).getBalance().then(function (res) {
-                // TODO andy - what should this b? - value = 0xffeab73bc133387b122fbb83604f34acf915ac8ce74d5cfb86ad66fd403feb64
+                // TODO andy - what should this be? - value = 0xffeab73bc133387b122fbb83604f34acf915ac8ce74d5cfb86ad66fd403feb64
+                return res ? res : 0;
+            });
+        }
+
+        function lengthOfTotalCalls() {
+            return ContractService.RateEx().with(defaultContext()).lengthOfTotalCalls().then(function (res) {
                 return res ? res : 0;
             });
         }

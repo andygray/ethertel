@@ -14,6 +14,9 @@
         var vm = this;
 
         vm.http_provider = Web3Config.PROVIDER;
+
+        // FIXME - temp - always log in as andy!
+        authService.login('andy');
     }
 
 })();
