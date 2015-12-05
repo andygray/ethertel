@@ -17,6 +17,8 @@
 
         RateEx.getAllCallsForProvider(AuthService.getClientInfo().address).then(function (getAllCalls) {
             console.log('getAllCalls', getAllCalls);
+            // TODO tmp set on attempted
+            vm.attemptedCalls = getAllCalls;
         });
 
         // FIXME = getBalance()
