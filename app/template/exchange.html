@@ -31,6 +31,14 @@
                         <h3 class="panel-title">{{ rateCard.name }}</h3>
                     </div>
                     <div class="panel-content">
+                        <br />
+                        <div class="text-center loading" ng-show="!rateCard.destinations">
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                        </div>
+
                         <p class="text-center">
                         <span ng-repeat="destination in rateCard.destinations">
                             <span>{{destination.name}} ({{destination.countryCode}})</span>
