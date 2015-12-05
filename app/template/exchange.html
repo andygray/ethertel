@@ -10,6 +10,7 @@
 
     <div class="row quote">
         <h2>Lowest Rates</h2>
+
         <div class="col-sm-4" ng-repeat="dest in ExchangeController.destinations">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -27,16 +28,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-sm-offset-3 attemptedCallContainer">
+    </div>
+
+    <div class="row quote ">
+        <div class="col-sm-12">
             <h3>All Rate Providers <span class="badge">{{ ExchangeController.rateCardCount }}</span></h3>
             <hr/>
-            <div ng-repeat="rateCard in ExchangeController.rateCards">
+            <div class="col-sm-6" ng-repeat="rateCard in ExchangeController.rateCards">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ ::rateCard.name }}</h3>
                     </div>
                     <div class="panel-content">
-                        <br />
+                        <br/>
+
                         <div class="text-center loading" ng-show="!rateCard.destinations">
                             <div class="loading-bar"></div>
                             <div class="loading-bar"></div>
