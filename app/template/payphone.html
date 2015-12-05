@@ -95,10 +95,9 @@
                     <h1>Confirmed</h1>
                     <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
                     <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
-                    <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard)
-                        }}</h4>
+                    <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
                     <h4>Rate: {{ ::PayphoneController.myQuote.rate }} WEI per Second</h4>
-                    <h4>Receipt: {{ ::PayphoneController.receipt }}</h4>
+                    <!--<h4>Receipt: <small>{{ ::PayphoneController.receipt }}</small></h4>-->
                 </div>
             </div>
         </div>
