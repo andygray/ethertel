@@ -15,13 +15,76 @@
             getQualityForRateCard: getQualityForRateCard,
             lowestRateForCountryCode: lowestRateForCountryCode,
             quote: quote,
-            addCall: addCall
+            addCall: addCall,
+            getAllCalls: getAllCalls,
+            getAllCallsForProvider: getAllCallsForProvider,
+            getCallDetailsForIndex: getCallDetailsForIndex,
+            numberOfCalls: numberOfCalls
         };
 
         function getBalance() {
             return ContractService.RateEx().with(defaultContext()).getBalance().then(function (res) {
                 // TODO andy - what should this be? - value = 0xffeab73bc133387b122fbb83604f34acf915ac8ce74d5cfb86ad66fd403feb64
                 return res ? res : 0;
+            });
+        }
+
+        function getAllCallsForProvider(rateCard) {
+            return this.getAllCalls().then(function (allCalls) {
+                return _.filter(allCalls, {rateCard: rateCard});
+            });
+        }
+
+        function getAllCalls() {
+
+            return this.numberOfCalls()
+                .then(function (count) {
+
+                    var resolves = _.chain(0).range(count)
+                        .value()
+                        .map(this.getCallDetailsForIndex);
+
+                    return $q.all(resolves)
+                        .then(function (results) {
+                            return _.map(results, function (rawCall, index) {
+                                return {
+                                    index: index,
+                                    caller: rawCall[0],
+                                    rateCard: rawCall[1],
+                                    countryCode: rawCall[2].toNumber(),
+                                    telephoneNumber: rawCall[3].toNumber(),
+                                    timestamp: rawCall[4].toNumber(),
+                                    amountInWei: rawCall[5].toNumber(),
+                                    rate: rawCall[6].toNumber(),
+                                    maxInSeconds: rawCall[7].toNumber(),
+                                    callInSeconds: rawCall[8].toNumber(),
+                                    costInWei: rawCall[9].toNumber(),
+                                    refundInWei: rawCall[10].toNumber(),
+                                    completed: rawCall[11],
+                                    quality: rawCall[12].toNumber(),
+                                    callHash: rawCall[13]
+                                };
+                            });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                            return [];
+                        })
+
+                }.bind(this));
+        }
+
+        function getCallDetailsForIndex(index) {
+            return ContractService.RateEx().with(defaultContext()).calls(index).then(function (res) {
+                return res;
+            });
+        }
+
+        function numberOfCalls() {
+            return ContractService.RateEx().with(defaultContext()).numberOfCalls().then(function (res) {
+                if (res) {
+                    return res.toNumber();
+                }
             });
         }
 
