@@ -1,9 +1,8 @@
-(function() {
+(function () {
 
     'use strict';
 
     mbApp.controllers.controller('AuthController', ['$rootScope', '$scope', '$location', 'AuthService', AuthController]);
-
 
     function AuthController($rootScope, $scope, $location, authService) {
 
@@ -13,8 +12,13 @@
             balance: balance(),
             seed: '',
             login: login,
-            logout: logout
+            logout: logout,
+            isActive: isActive
         });
+
+        function isActive(viewLocation) {
+            return viewLocation === $location.path();
+        }
 
         function balance() {
             return authService.getBalance();
@@ -28,22 +32,22 @@
             authService.logout();
         }
 
-        var loginListener = $rootScope.$on('auth:login', function(e, data) {
+        var loginListener = $rootScope.$on('auth:login', function (e, data) {
             _.extend($scope, {
                 seed: '',
                 address: data.address,
                 isAnonymous: false
             });
         });
-        
-        var logoutListener = $rootScope.$on('auth:logout', function(e, data) {
+
+        var logoutListener = $rootScope.$on('auth:logout', function (e, data) {
             _.extend($scope, {
                 address: '',
                 isAnonymous: true
             });
         });
 
-        $scope.$on('$destroy', function() {
+        $scope.$on('$destroy', function () {
             loginListener();
             logoutListener();
         });

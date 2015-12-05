@@ -11,15 +11,15 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:400,100,700,300' rel='stylesheet' type='text/css'>
 </head>
 
-<body ng-app="mbApp">
+<body ng-app="mbApp" ng-controller="AuthController">
 
 <div id="navigationBar">
     <div id="brand">EtherTel</div>
     <div id="navlinks">
         <ul>
-            <li class="active"><a href="#/">Home</a></li>
-            <li><a href="#/exchange">Exchange</a></li>
-            <li><a href="#/exchange">Provider</a></li>
+            <li ng-class="{ active: isActive('/')}"><a href="#/">Home</a></li>
+            <li ng-class="{ active: isActive('/exchange')}"><a href="#/exchange">Exchange</a></li>
+            <li></li>
         </ul>
     </div>
 </div>
@@ -29,7 +29,7 @@
 </div>
 
 <div class="row">
-    <footer ng-controller="AuthController" class="mb-page" style="padding-left: 50px;" ng-if="!isAnonymous">
+    <footer class="mb-page" style="padding-left: 50px;" ng-if="!isAnonymous">
         <span class="text-muted">Address: {{ address }}</span></span>
         <span class="badge">{{ balance }}</span>
         <span><a href="" ng-click="logout()">Log out</a></span>
