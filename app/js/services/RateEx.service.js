@@ -29,14 +29,14 @@
             });
         }
 
-        function getAllCallsForProvider(rateCard) {
+        function getAllCallsForProvider(rateCardAddress) {
             return this.getAllCalls().then(function (allCalls) {
-                return _.filter(allCalls, {rateCard: rateCard});
+                // TODO this should use {rateCard: rateCardAddress} - could be a bug?
+                return _.filter(allCalls, {caller: rateCardAddress});
             });
         }
 
         function getAllCalls() {
-
             return this.numberOfCalls()
                 .then(function (count) {
 

@@ -13,10 +13,8 @@
             AuthService.login(rateCard.name);
         };
 
-        $scope.$on('auth:login', function (e, data) {
-            //seedHash: "0xd0dbfdf2116fdf641f0d57b63152d482ded250d55c959dc02af0877ae91c1734"
-            //address: "0xad24121d9a822a9b54ebb386bbcfea577663800a"
-            $location.path('/provider-manage/' + data.seedHash + '/' + data.address);
+        $scope.$on('auth:login', function () {
+            $location.path('/provider-manage');
         });
 
         RateEx.rateCardCount().then(function (res) {

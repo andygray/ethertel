@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -28,7 +28,7 @@
                 controller: 'ProvidersController',
                 controllerAs: 'ProvidersController'
             })
-            .when('/provider-manage/:seedHash/:address', {
+            .when('/provider-manage', {
                 templateUrl: 'template/provider-manage.html',
                 controller: 'ProviderManageController',
                 controllerAs: 'ProviderManageController'
