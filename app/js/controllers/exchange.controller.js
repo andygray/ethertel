@@ -5,7 +5,7 @@
     mbApp.controllers.controller('ExchangeController', ExchangeController);
 
     // EventService needed to hook up events!
-    function ExchangeController($log, $rootScope, $scope, _, AuthService, RateEx, SupportedDestinations, EventService) {
+    function ExchangeController($log, $rootScope, $scope, _, AuthService, RateEx, SupportedDestinations, RateExEvents) {
 
         var vm = this;
 
@@ -18,6 +18,7 @@
 
         RateEx.getBalance().then(function (res) {
             $log.debug('getBalance', res);
+            vm.balance = res;
         });
 
         RateEx.getAllRateCard().then(function (rateCards) {
@@ -61,12 +62,12 @@
             return _.get(_.find(vm.rateCards, {address: hash}), 'name', 'n/a');
         };
 
-        $rootScope.$on('RateEx:AddDestination', function (event, data) {
+        $rootScope.$on(RateExEvents.AddDestination, function (event, data) {
             $log.debug('' + event, data);
         });
 
         // example of how to react to events - see event.service.js and RateEx.sol
-        $rootScope.$on('RateEx:AddRateCard', function (event, data) {
+        $rootScope.$on(RateExEvents.AddRateCard, function (event, data) {
             $log.debug('' + event, data);
 
             RateEx.rateCardCount().then(function (res) {
