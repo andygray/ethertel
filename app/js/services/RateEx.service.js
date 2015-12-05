@@ -117,7 +117,7 @@
                     }
                 });
         }
-        
+
         function defaultContext() {
             return {
                 client: AuthService.getClientInfo(),
