@@ -84,6 +84,28 @@
             }
         });
 
+        vm.completedCalls = [];
+        var event = ContractService.RateEx().original.CompletedCallTx({}, {fromBlock: 0, toBlock: 'latest'});
+        event.watch(function (error, result) {
+            if (!error) {
+                //console.log(result.args);
+                if (result.args.caller === vm.address) {
+                    vm.completedCalls.push({
+                        caller: result.args.caller,
+                        countryCode: result.args.countryCode && result.args.countryCode.toNumber(),
+                        telephoneNumber: result.args.telephoneNumber && result.args.telephoneNumber.toNumber(),
+                        rate: result.args.rate && result.args.rate.toNumber(),
+                        timestamp: result.args.timestamp && result.args.timestamp.toNumber(),
+                        rateCard: result.args.rateCard,
+                        amountInWei: result.args.timestamp && result.args.amountInWei.toNumber(),
+                        callInSeconds: result.args.timestamp && result.args.callInSeconds.toNumber(),
+                        costInWei: result.args.timestamp && result.args.costInWei.toNumber(),
+                        refundInWei: result.args.timestamp && result.args.refundInWei.toNumber()
+                    });
+                }
+            }
+        });
+
         // auth magic
         vm.login = function () {
             AuthService.login(vm.seed);

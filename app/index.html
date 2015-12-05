@@ -29,10 +29,10 @@
 </div>
 
 <div class="row">
-    <footer ng-controller="AuthController" class="mb-page" style="padding-left: 50px;">
+    <footer ng-controller="AuthController" class="mb-page" style="padding-left: 50px;" ng-if="!isAnonymous">
         <span class="text-muted">Address: {{ address }}</span></span>
         <span class="badge">{{ balance }}</span>
-        <span ng-if="!isAnonymous"><a href="" ng-click="logout()">Log out</a></span>
+        <span><a href="" ng-click="logout()">Log out</a></span>
     </footer>
 </div>
 
