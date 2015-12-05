@@ -5,7 +5,7 @@
     mbApp.controllers.controller('PayphoneController', PayphoneController);
 
     // EventService needed to hook up events!
-    function PayphoneController($log, $rootScope, $scope, AuthService, RateEx, SupportedDestinations, SupportedRateCards, ContractService, EventService) {
+    function PayphoneController($log, $rootScope, $scope, AuthService, RateEx, SupportedDestinations, ContractService, EventService) {
 
         var vm = this;
 
@@ -46,8 +46,13 @@
             vm.telephoneNumber = vm.telephoneNumber + num;
         };
 
+        var loadedRateCards = [];
+        RateEx.getAllRateCard().then(function (rateCards) {
+            loadedRateCards = rateCards;
+        });
+
         vm.getPrettyRateCard = function (hash) {
-            return SupportedRateCards[hash];
+            return _.get(_.find(loadedRateCards, {address: hash}), 'name', 'n/a');
         };
 
         vm.addCall = function () {
