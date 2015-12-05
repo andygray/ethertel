@@ -21,6 +21,15 @@
             vm.attemptedCalls = getAllCalls;
         });
 
+        var loadedRateCards = [];
+        RateEx.getAllRateCard().then(function (rateCards) {
+            loadedRateCards = rateCards;
+        });
+
+        this.getPrettyRateCard = function (hash) {
+            return _.get(_.find(loadedRateCards, {address: hash}), 'name', 'n/a');
+        };
+
         // FIXME = getBalance()
 
     }
