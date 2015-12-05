@@ -75,11 +75,10 @@ contract RateEx is owned, named("RateEx") {
         return rateCards.length;
     }
     
-    function getRateCardDetails(uint index) constant returns (address cardAddress, bytes32 name) {
+    function getRateCardDetails(uint index) constant returns (address cardAddress, bytes32 name, bytes32 domain) {
         if (rateCards[index] == 0x0) throw;
 
-		// FIXME - ANDY can we not return the type RateCard here OR RateCard.address() OR is RateCard.name() actually the address?
-        return (rateCards[index], RateCard(rateCards[index]).name());
+        return (rateCards[index], RateCard(rateCards[index]).name(), RateCard(rateCards[index]).domain());    
     }
     
     // really should access RateCard direct
@@ -256,10 +255,10 @@ contract RateEx is owned, named("RateEx") {
         // no rate on exchange
         if (lowest == 999999) throw;
         
-        return (lowest, lowestCard, qualityForRateCard(lowestCard)); 
+        return (lowest, lowestCard, 0); 
     }
     
-    function quote(uint countryCode, uint timeInSecs) constant returns (uint amountInWei, address lowestRateCardAddress) {
+    function quote(uint countryCode, uint timeInSecs) constant returns (uint amountInWei, uint lowestRate, address lowestRateCardAddress, uint quality) {
         // don't cover that destination
         if (destinations[countryCode] == false) throw;
         
@@ -277,7 +276,7 @@ contract RateEx is owned, named("RateEx") {
         // no rate on exchange
         if (lowest == 999999) throw;
         
-        return (lowest * timeInSecs, lowestCard); 
+        return (lowest * timeInSecs, lowest, lowestCard, 0); 
     }
     
     // how much the RateEx is holding in escrow

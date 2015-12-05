@@ -1,111 +1,123 @@
-<div id="phoneWrapper">
-    <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote && !PayphoneController.callQuoting">
-        <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations"
-                ng-model="PayphoneController.countryCode" class="buttonStyle">
-            <option value="" selected disabled> Select Country</option>
-        </select>
+<div class="col-sm-5 col-sm-offset-1">
+    <div id="phoneWrapper">
+        <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote && !PayphoneController.callQuoting">
+            <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations"
+                    ng-model="PayphoneController.countryCode" class="buttonStyle" required>
+                <option value="" selected disabled> Select Country</option>
+            </select>
 
-        <div ng-if="PayphoneController.countryCode">
-            <form name="quoteForm" novalidate>
-                <div id="fullTelNumber">
-                    <div id="diallingCode">+{{ PayphoneController.countryCode }}</div>
-                    <div id="diallingNumber">
-                        <input type="text" ng-class="telNumber"
-                               ng-model="PayphoneController.telephoneNumber"
-                               placeholder="telephone number" required/>
+            <div>
+                <form name="quoteForm" novalidate>
+                    <div id="fullTelNumber">
+                        <div id="diallingCode">+{{ PayphoneController.countryCode }}</div>
+                        <div id="diallingNumber">
+                            <input type="text" ng-class="telNumber"
+                                   ng-model="PayphoneController.telephoneNumber"
+                                   placeholder="telephone number" required/>
+                        </div>
                     </div>
-                </div>
 
-                <div id="keyPad">
-                    <div class="1key pad" ng-click="PayphoneController.keypad('1')">1</div>
-                    <div class="2key pad" ng-click="PayphoneController.keypad('2')">2</div>
-                    <div class="3key pad" ng-click="PayphoneController.keypad('3')">3</div>
-                    <div class="4key pad" ng-click="PayphoneController.keypad('4')">4</div>
-                    <div class="5key pad" ng-click="PayphoneController.keypad('5')">5</div>
-                    <div class="6key pad" ng-click="PayphoneController.keypad('6')">6</div>
-                    <div class="7key pad" ng-click="PayphoneController.keypad('7')">7</div>
-                    <div class="8key pad" ng-click="PayphoneController.keypad('8')">8</div>
-                    <div class="9key pad" ng-click="PayphoneController.keypad('9')">9</div>
-                    <div class="deletekey pad">x</div>
-                    <div class="0key pad" ng-click="PayphoneController.keypad('0')">0</div>
-                    <div class="pluskey pad">+</div>
-                </div>
-                <div id="estMins">
-                    <div class="mins">Mins</div>
-                    <input type="number" ng-model="PayphoneController.estimatedMins" placeholder="Estimated Mins"
-                           required/>
-                </div>
-                <button class="buttonStyle" ng-click="PayphoneController.quote()" ng-disabled="!quoteForm.$valid">
-                    Quote
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div ng-if="PayphoneController.myQuote && !PayphoneController.callAdding && !PayphoneController.callAdded">
-        <div>
-            <div class="quote">
-                <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
-                <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
-                <h4>Estimate Mins: {{ ::PayphoneController.estimatedMins }}</h4>
-                <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
-                <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
-                <h4>Rate: {{ ::PayphoneController.rate }}</h4>
-                <h4>Quality: <span class="badge">{{ ::PayphoneController.quality }}</span></h4>
+                    <div id="keyPad">
+                        <div class="1key pad" ng-click="PayphoneController.keypad('1')">1</div>
+                        <div class="2key pad" ng-click="PayphoneController.keypad('2')">2</div>
+                        <div class="3key pad" ng-click="PayphoneController.keypad('3')">3</div>
+                        <div class="4key pad" ng-click="PayphoneController.keypad('4')">4</div>
+                        <div class="5key pad" ng-click="PayphoneController.keypad('5')">5</div>
+                        <div class="6key pad" ng-click="PayphoneController.keypad('6')">6</div>
+                        <div class="7key pad" ng-click="PayphoneController.keypad('7')">7</div>
+                        <div class="8key pad" ng-click="PayphoneController.keypad('8')">8</div>
+                        <div class="9key pad" ng-click="PayphoneController.keypad('9')">9</div>
+                        <div class="deletekey pad">x</div>
+                        <div class="0key pad" ng-click="PayphoneController.keypad('0')">0</div>
+                        <div class="pluskey pad">+</div>
+                    </div>
+                    <div id="estMins">
+                        <div class="mins">Mins</div>
+                        <input type="number" ng-model="PayphoneController.estimatedMins" placeholder="Estimated Mins"
+                               required/>
+                    </div>
+                    <button class="buttonStyle" ng-click="PayphoneController.quote()" ng-disabled="!quoteForm.$valid">
+                        Quote
+                    </button>
+                </form>
             </div>
-            <div class="form-group" ng-show="PayphoneController.isAnonymous">
-                <input ng-model="PayphoneController.seed" type="password" class="form-control"
-                       placeholder="Input seed phrase ...">
-                <button ng-click="PayphoneController.login()">Sign</button>
+        </div>
+
+        <div ng-if="PayphoneController.myQuote && !PayphoneController.callAdding && !PayphoneController.callAdded">
+            <div>
+                <div class="quote">
+                    <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
+                    <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
+                    <h4>Estimate Mins: {{ ::PayphoneController.estimatedMins }}</h4>
+                    <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
+                    <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard)
+                        }}</h4>
+                    <h4>Rate: {{ ::PayphoneController.myQuote.rate }} WEI per Second</h4>
+                    <!--<h4>Quality: <span class="badge">{{ ::PayphoneController.quality }}</span></h4>-->
+                </div>
+                <div class="form-group" ng-show="PayphoneController.isAnonymous">
+                    <input ng-model="PayphoneController.seed" type="password" class="form-control"
+                           placeholder="Input seed phrase ...">
+                    <button ng-click="PayphoneController.login()">Sign</button>
+                </div>
+                <h4 ng-show="!PayphoneController.isAnonymous">
+                    <input ng-model="PayphoneController.weiValue" type="number"/>
+                    <button class="makeCall" ng-click="PayphoneController.addCall()">Call</button>
+                </h4>
             </div>
-            <h4 ng-show="!PayphoneController.isAnonymous">
-                <input ng-model="PayphoneController.weiValue" type="number"/>
-                <button class="makeCall" ng-click="PayphoneController.addCall()">Call</button>
-            </h4>
         </div>
-    </div>
 
-    <div class="updateContainer" ng-if="PayphoneController.callQuoting">
-        <h1 class="update">Building Quote</h1>
+        <div class="updateContainer" ng-if="PayphoneController.callQuoting">
+            <h1 class="update">Building Quote</h1>
 
-        <div class="loading">
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
+            <div class="loading">
+                <div class="loading-bar"></div>
+                <div class="loading-bar"></div>
+                <div class="loading-bar"></div>
+                <div class="loading-bar"></div>
+            </div>
         </div>
-    </div>
 
-    <div class="updateContainer" ng-if="PayphoneController.myQuote && PayphoneController.callAdding">
-        <h1 class="update">Confirming Call</h1>
+        <div class="updateContainer" ng-if="PayphoneController.myQuote && PayphoneController.callAdding">
+            <h1 class="update">Confirming Call</h1>
 
-        <div class="loading">
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
+            <div class="loading">
+                <div class="loading-bar"></div>
+                <div class="loading-bar"></div>
+                <div class="loading-bar"></div>
+                <div class="loading-bar"></div>
+            </div>
         </div>
-    </div>
 
-    <div ng-if="PayphoneController.myQuote && PayphoneController.callAdded">
-        <div>
-            <div class="confirmed">
-                <h1>Confirmed</h1>
-                <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
-                <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
-                <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
-                <h4>Receipt: {{ ::PayphoneController.receipt }}</h4>
+        <div ng-if="PayphoneController.myQuote && PayphoneController.callAdded">
+            <div>
+                <div class="confirmed">
+                    <h1>Confirmed</h1>
+                    <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
+                    <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
+                    <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard)
+                        }}</h4>
+                    <h4>Rate: {{ ::PayphoneController.myQuote.rate }} WEI per Second</h4>
+                    <h4>Receipt: {{ ::PayphoneController.receipt }}</h4>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!--<div class="col-sm-6">-->
-<!--<h3>Attempted Calls</h3>-->
-<!--<div ng-repeat="ac in PayphoneController.attemptedCalls" class="text-center">-->
-<!--{{ ::ac.timestamp * 1000 | date }} +{{ ::ac.countryCode }} {{ ::ac.telephoneNumber }} <span class="text-muted">rate/rate card</span>-->
-<!--{{ ::ac.rate }} {{ ::PayphoneController.getPrettyRateCard(ac.rateCard) }}-->
-<!--</div>-->
-<!--</div>-->
+
+<div class="col-sm-5 col-sm-offset-1 attemptedCallContainer">
+    <h3>Attempted Calls</h3>
+
+    <div ng-repeat="ac in PayphoneController.attemptedCalls" class="attemptedCallTable">
+        <div class="time"><span class="headerRow">Time: </span>{{ ::ac.timestamp * 1000 | date }}</div>
+        <div class="countryCode"><span class="headerRow">Country Code: </span>{{ ::ac.countryCode }}</div>
+        <div class="telephoneNumber"><span class="headerRow">Telephone: </span>{{ ::ac.telephoneNumber }}</div>
+        <div class="rate"><span class="headerRow">Rate: </span>{{ ::ac.rate }}</div>
+        <div class="rateCard"><span class="headerRow">Rate Card: </span>{{
+            ::PayphoneController.getPrettyRateCard(ac.rateCard) }}
+        </div>
+    </div>
+</div>
     
 
 

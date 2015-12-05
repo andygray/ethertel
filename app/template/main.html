@@ -1,18 +1,17 @@
 <div class="jumbotron">
     <div class="container">
-        <div class="col-md-12 row">
-            <h1 class="text-center">Welcome to EtherTel</h1>
+        <div class="col-sm-12 row">
+            <h1 class="text-center" style="color: #82629D;">Welcome to EtherTel</h1>
+
             <p class="text-center">An <a href="https://www.ethereum.org/">Ethereum</a> based payphone!</p>
-        </div>
-
-        <div class="col-md-12 row">
-            <a href="#/payphone" class="btn btn-primary btn-lg col-md-offset-1 col-md-4">Make a Call</a>
-
-            <a href="#/exchange" class="btn btn-primary btn-lg col-md-offset-2 col-md-4">Exchange</a>
+            
+            <p class="text-center">
+                <a href="#/payphone" class="btn btn-default btn-lg col-md-offset-1 col-md-4">Make a Call</a>
+            </p>
         </div>
     </div>
 </div>
 
 <footer>
-    <p class="text-center text-muted" >Blockchain Provider: {{ MainController.http_provider }}</p>
+    <p class="text-center text-muted">Blockchain Provider: {{ MainController.http_provider }}</p>
 </footer>

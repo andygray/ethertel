@@ -31,7 +31,9 @@
                     vm.myQuote = {};
                     _.extend(vm.myQuote, {
                         estimatedAmountInWei: res.estimatedAmountInWei,
-                        rateCard: res.rateCard
+                        rateCard: res.rateCard,
+                        rate: res.rate,
+                        quality: res.quality
                     });
 
                     vm.weiValue = res.estimatedAmountInWei;
