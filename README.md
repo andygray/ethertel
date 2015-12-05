@@ -26,6 +26,19 @@ For the purpose of a PoC we have explored this option.  Providers offering PSTN 
 
 We hope this gives some food for thought and should you be a VoIP provider and wish to try this service please do contact us and we will be happy to discuss how you can connect to the blockchain and extend the reach of EtherTel. 
 
+# Smart Contracts
+
+[RateEx](https://github.com/andygray/ethertel/blob/master/dapp/contracts/RateEx.sol) Contract
+
+ * holds all addresses of Provider's [RateCard](https://github.com/andygray/ethertel/blob/master/dapp/contracts/RateCard.sol)
+ * contains all calls attempted and completed
+ * handles the assignment of ether to the various parties including refunds, escrow, and Provider payment
+ * calculates lowest rates for destinations
+
+[RateCard](https://github.com/andygray/ethertel/blob/master/dapp/contracts/RateCard.sol) Contract
+  * has the rates offered for desinations
+  * owner of the rates
+
 # Requirements 
 
 Simple payphone web based client: 
@@ -50,6 +63,7 @@ User can use normal ethereum wallet to fund account and calls.
 * Provider can see the amount in ether taken for their RateCard
 
 Provider can use normal ethereum wallet to withdraw cleared funds.
+
 
 ## Demo
 
