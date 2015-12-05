@@ -5,7 +5,7 @@
     mbApp.controllers.controller('ExchangeController', ExchangeController);
 
     // EventService needed to hook up events!
-    function ExchangeController($log, $rootScope, $scope, _, AuthService, RateEx, SupportedDestinations, SupportedRateCards, EventService) {
+    function ExchangeController($log, $rootScope, $scope, _, AuthService, RateEx, SupportedDestinations, EventService) {
 
         var vm = this;
 
@@ -54,7 +54,7 @@
         });
 
         vm.getPrettyRateCard = function (hash) {
-            return SupportedRateCards[hash];
+            return _.get(_.find(vm.rateCards, {address: hash}), 'name', 'n/a');
         };
 
         $rootScope.$on('RateEx:AddDestination', function (event, data) {
