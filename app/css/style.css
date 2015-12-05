@@ -287,11 +287,11 @@
     }
     
     .confirmed {
-        background: #38115A;
+        background: rgba(130, 98, 157, 0.2);
+        color: #82629D;
         border-radius: 5px;
         font-weight: 100;
         margin-bottom: 10px;
-        color: rgba(255, 255, 255, 0.7);
         padding: 5px;
     }
     
@@ -519,10 +519,6 @@
         height: 30px;
         height: 30px;
         line-height: 30px;
-    }
-
-    .panel-default > .panel-heading {
-        background-color: red !important;
     }
 
     .default-color {

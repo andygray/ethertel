@@ -2,11 +2,11 @@
 
     'use strict';
 
-    mbApp.services.factory('AuthService', ['$rootScope', '$cookies', 'AppConfig', AuthService]);
+    mbApp.services.factory('AuthService', ['$rootScope', '$cookies', 'AppConfig', 'Web3Service', AuthService]);
 
     var utils = mbApp.utils.eth;
 
-    function AuthService($rootScope, $cookies, AppConfig) {
+    function AuthService($rootScope, $cookies, AppConfig, Web3Service) {
 
         return {
             login: login,
@@ -21,7 +21,9 @@
             
             getAddress: getAddress,
             getSeedHash: getSeedHash,
-            getClientInfo: getClientInfo
+            getClientInfo: getClientInfo,
+
+            getBalance: getBalance
         };
 
         function login(seed) {
@@ -38,7 +40,7 @@
         }
 
         function logout() {
-            $cookies.remove('auth:seedHash')
+            $cookies.remove('auth:seedHash');
             $cookies.remove('auth:address');
 
             $rootScope.$broadcast('auth:logout');
@@ -86,6 +88,14 @@
             }
 
             return result;
+        }
+
+        function getBalance() {
+            if (this.isAnonymous()) {
+                return 0;
+            }
+
+            return Web3Service.eth.getBalance(this.getAddress()).toNumber();
         }
     }
 

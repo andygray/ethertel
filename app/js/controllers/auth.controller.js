@@ -10,10 +10,15 @@
         _.extend($scope, {
             isAnonymous: authService.isAnonymous(),
             address: authService.getAddress(),
+            balance: balance(),
             seed: '',
             login: login,
             logout: logout
         });
+
+        function balance() {
+            return authService.getBalance();
+        }
 
         function login() {
             authService.login($scope.seed);

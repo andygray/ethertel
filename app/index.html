@@ -14,7 +14,6 @@
 <body ng-app="mbApp">
 
 <div id="navigationBar">
-
     <div id="brand">EtherTel</div>
     <div id="navlinks">
         <ul>
@@ -23,16 +22,19 @@
             <li></li>
         </ul>
     </div>
-
 </div>
 
-<div ng-view class="view-frame"></div>
+<div class="row">
+    <div ng-view class="view-frame"></div>
+</div>
 
-<hr/>
-<footer ng-controller="AuthController" class="mb-page" style="padding-left: 50px;">
-    <span class="text-muted">Address: {{ address }}</span></span>
-    <span ng-if="!isAnonymous"><a href="" ng-click="logout()">Log out</a>
-</footer>
+<div class="row">
+    <footer ng-controller="AuthController" class="mb-page" style="padding-left: 50px;">
+        <span class="text-muted">Address: {{ address }}</span></span>
+        <span class="badge">{{ balance }}</span>
+        <span ng-if="!isAnonymous"><a href="" ng-click="logout()">Log out</a></span>
+    </footer>
+</div>
 
 <!-- Common libs -->
 <script src="lib/underscore/underscore-min.js"></script>

@@ -1,4 +1,4 @@
-<div class="col-sm-5 col-sm-offset-1">
+<div class="col-sm-5 col-sm-offset-1" style="padding-top: 20px">
     <div id="phoneWrapper">
         <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote && !PayphoneController.callQuoting">
             <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations"
@@ -95,17 +95,18 @@
                     <h1>Confirmed</h1>
                     <h4>Country Code: {{ ::PayphoneController.countryCode }}</h4>
                     <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
-                    <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard)
-                        }}</h4>
+                    <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
                     <h4>Rate: {{ ::PayphoneController.myQuote.rate }} WEI per Second</h4>
-                    <h4>Receipt: {{ ::PayphoneController.receipt }}</h4>
+                    <!--<h4>Receipt: <small>{{ ::PayphoneController.receipt }}</small></h4>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="col-sm-5 col-sm-offset-1 attemptedCallContainer">
+
+
+<div class="col-sm-5 col-sm-offset-1 attemptedCallContainer" style="padding-top: 20px">
     <h3>Attempted Calls</h3>
 
     <div ng-repeat="ac in PayphoneController.attemptedCalls" class="attemptedCallTable">
