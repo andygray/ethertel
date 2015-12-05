@@ -179,6 +179,13 @@
         border-radius: 5px;
     }
     
+    .quote h2{
+         color: #82629D;
+        font-size:22px;
+        font-family: 'Lato';
+        font-weight: 300;
+    }
+    
     .quote h4 {
         height: 30px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -520,7 +527,19 @@
         height: 30px;
         line-height: 30px;
     }
+<<<<<<< Updated upstream
 
     .default-color {
         color: #82629D;
     }
+=======
+    
+    
+    
+.panel-success>.panel-heading {
+    background-color: #38115A!important;
+        font-weight: 300!important;
+        font-size:20px!important;
+   color: #FFF!important;
+}
+>>>>>>> Stashed changes
