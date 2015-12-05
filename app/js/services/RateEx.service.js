@@ -7,6 +7,7 @@
     function RateEx($q, $log, _, Web3Service, AppConfig, ContractService, AuthService) {
 
         return {
+            getBalance: getBalance,
             rateCardCount: rateCardCount,
             getRateForRateCard: getRateForRateCard,
             getRateCardDetails: getRateCardDetails,
@@ -16,6 +17,13 @@
             quote: quote,
             addCall: addCall
         };
+
+        function getBalance() {
+            return ContractService.RateEx().with(defaultContext()).getBalance().then(function (res) {
+                // TODO andy - what should this b? - value = 0xffeab73bc133387b122fbb83604f34acf915ac8ce74d5cfb86ad66fd403feb64
+                return res ? res : 0;
+            });
+        }
 
         function getRateForRateCard(rateCardAddress, countryCode) {
             return ContractService.RateEx().with(defaultContext()).getRateForRateCard(rateCardAddress, countryCode).then(function (res) {

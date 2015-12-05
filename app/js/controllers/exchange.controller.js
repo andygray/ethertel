@@ -16,6 +16,10 @@
             $log.debug('Number of rate cards', vm.rateCardCount);
         });
 
+        RateEx.getBalance().then(function (res) {
+            $log.debug('getBalance', res);
+        });
+
         RateEx.getAllRateCard().then(function (rateCards) {
             $log.debug('Found All RateCards', rateCards);
             vm.rateCards = rateCards;
