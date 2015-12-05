@@ -9,22 +9,24 @@
     <hr/>
 
     <div class="row quote">
-        <h2>Lowest Rates</h2>
-
-        <div class="col-sm-4" ng-repeat="dest in ExchangeController.destinations">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ ::dest.name }}</h3>
-                </div>
-                <div class="panel-content">
-                    <p class="text-center">
-                        <span style="font-size: 150%">{{ ::dest.rate }}</span>
-                        <span class="text-muted">WEI per SECOND</span>
-                    </p>
-                </div>
-                <div class="panel-footer">
-                    <span class="text-muted">Provider:</span> {{ ExchangeController.getPrettyRateCard(dest.rateCard) }}<br/>
-                    <span class="text-muted">Quality:</span> <span class="badge">{{ dest.quality }}</span><br/>
+        <div class="col-sm-12">
+            <h3>Lowest Rates <span class="badge">{{ ExchangeController.destinations.length || 0 }}</span></h3>
+            <hr/>
+            <div class="col-sm-4" ng-repeat="dest in ExchangeController.destinations">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ ::dest.name }}</h3>
+                    </div>
+                    <div class="panel-content">
+                        <p class="text-center">
+                            <span style="font-size: 150%">{{ ::dest.rate }}</span>
+                            <span class="text-muted">WEI per SECOND</span>
+                        </p>
+                    </div>
+                    <div class="panel-footer">
+                        <span class="text-muted">Provider:</span> {{ ExchangeController.getPrettyRateCard(dest.rateCard) }}<br/>
+                        <span class="text-muted">Quality:</span> <span class="badge">{{ dest.quality }}</span><br/>
+                    </div>
                 </div>
             </div>
         </div>
