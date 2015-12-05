@@ -373,7 +373,7 @@
     
     .attemptedCallContainer {
         background-color: #EEE;
-        width: 100%;
+        /*width: 100%;*/
         display: table;
     }
     
@@ -519,4 +519,12 @@
         height: 30px;
         height: 30px;
         line-height: 30px;
+    }
+
+    .panel-default > .panel-heading {
+        background-color: red !important;
+    }
+
+    .default-color {
+        color: #82629D;
     }
