@@ -10,6 +10,9 @@
             "@wraparound": "true"
         }
     },
+    "breakpoints": {
+        "json()": []
+    },
     "console": {
         "@expanded": false,
         "@height": 198,
@@ -78,19 +81,19 @@
     },
     "ext": {
         "counters": {
-            "@ace": 1,
-            "@acestatus": 1,
+            "@ace": 2,
+            "@acestatus": 2,
             "@divider": 4,
-            "@document": 6,
+            "@document": 11,
             "@ethereum-console": 1,
             "@form": 5,
             "@immediate": 1,
             "@menu": 5,
             "@menuitem": 13,
             "@pane": 2,
-            "@session": 6,
-            "@tab": 6,
-            "@undoManager": 6
+            "@session": 11,
+            "@tab": 11,
+            "@undoManager": 11
         }
     },
     "findinfiles": {
@@ -107,8 +110,7 @@
     },
     "panecycle": {
         "json()": [
-            "tab5",
-            "tab0"
+            "tab5"
         ]
     },
     "panels": {
@@ -149,7 +151,7 @@
         }
     },
     "projecttree": {
-        "@scrollpos": -10,
+        "@scrollpos": 173,
         "@showfs": true,
         "expanded": {
             "json()": [
@@ -193,215 +195,153 @@
     "tabs": {
         "json()": {
             "focus": "tab5",
+            "meta": {
+                "accessList": [
+                    "tab5",
+                    "tab10",
+                    "tab9",
+                    "tab4",
+                    "tab8",
+                    "tab1"
+                ]
+            },
+            "name": "pane1",
             "nodes": [
                 {
-                    "type": "pane",
-                    "name": "pane0",
-                    "nodes": [
-                        {
-                            "type": "tab",
-                            "name": "tab0",
-                            "path": "/app/template/payphone.html",
-                            "className": [
-                                "tab0"
-                            ],
-                            "document": {
-                                "changed": false,
-                                "meta": {
-                                    "timestamp": 1449309579716
-                                },
-                                "filter": true,
-                                "title": "payphone.html",
-                                "tooltip": "/app/template/payphone.html",
-                                "ace": {}
-                            },
-                            "editorType": "ace",
-                            "active": true
+                    "type": "tab",
+                    "name": "tab1",
+                    "path": "",
+                    "className": [],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1449309383662
                         },
-                        {
-                            "type": "tab",
-                            "name": "tab2",
-                            "path": "/app/css/style.css",
-                            "className": [
-                                "tab2"
-                            ],
-                            "document": {
-                                "filter": true,
-                                "title": "style.css",
-                                "tooltip": "/app/css/style.css",
-                                "ace": {
-                                    "folds": [],
-                                    "scrolltop": 2558,
-                                    "scrollleft": 0,
-                                    "selection": {
-                                        "start": {
-                                            "row": 171,
-                                            "column": 5
-                                        },
-                                        "end": {
-                                            "row": 171,
-                                            "column": 10
-                                        },
-                                        "isBackwards": false
-                                    },
-                                    "options": {
-                                        "guessTabSize": true,
-                                        "useWrapMode": false,
-                                        "wrapToView": true
-                                    },
-                                    "firstLineState": 0
-                                },
-                                "hash": "caf8abfa82d124e060d5575e486221d6bbe2c24d",
-                                "meta": {
-                                    "timestamp": 1449279415772
-                                },
-                                "changed": false
-                            },
-                            "editorType": "ace",
-                            "active": false
-                        },
-                        {
-                            "type": "tab",
-                            "name": "tab3",
-                            "path": "/app/js/constants/web3.const.js",
-                            "className": [
-                                "tab3"
-                            ],
-                            "document": {
-                                "filter": true,
-                                "title": "web3.const.js",
-                                "tooltip": "/app/js/constants/web3.const.js",
-                                "ace": {
-                                    "folds": [],
-                                    "scrolltop": 0,
-                                    "scrollleft": 0,
-                                    "selection": {
-                                        "start": {
-                                            "row": 2,
-                                            "column": 18
-                                        },
-                                        "end": {
-                                            "row": 2,
-                                            "column": 18
-                                        },
-                                        "isBackwards": false
-                                    },
-                                    "options": {
-                                        "guessTabSize": true,
-                                        "useWrapMode": false,
-                                        "wrapToView": true
-                                    },
-                                    "firstLineState": 0
-                                },
-                                "hash": "0073b842607594df47545c498d5ade181b570e3f",
-                                "meta": {
-                                    "timestamp": 1449309416606
-                                },
-                                "changed": false
-                            },
-                            "editorType": "ace",
-                            "active": false
-                        }
-                    ],
-                    "skin": "editor_tab",
-                    "skinset": "default",
-                    "meta": {
-                        "accessList": [
-                            "tab0",
-                            "tab2",
-                            "tab3"
-                        ]
-                    }
+                        "filter": true,
+                        "title": "Ethereum Console",
+                        "ethereum-console": {}
+                    },
+                    "editorType": "ethereum-console",
+                    "active": false
                 },
                 {
-                    "type": "pane",
-                    "name": "pane1",
-                    "nodes": [
-                        {
-                            "type": "tab",
-                            "name": "tab1",
-                            "path": "",
-                            "className": [],
-                            "document": {
-                                "changed": false,
-                                "meta": {
-                                    "timestamp": 1449309383662
-                                },
-                                "filter": true,
-                                "title": "Ethereum Console",
-                                "ethereum-console": {}
-                            },
-                            "editorType": "ethereum-console",
-                            "active": false
-                        },
-                        {
-                            "type": "tab",
-                            "name": "tab4",
-                            "path": "",
-                            "className": [
-                                "tab4"
-                            ],
-                            "document": {
-                                "changed": false,
-                                "meta": {
-                                    "timestamp": 1449309425736
-                                },
-                                "filter": true,
-                                "title": "Terminal",
-                                "terminal": {
-                                    "id": "devel_249",
-                                    "cwd": "",
-                                    "width": 905,
-                                    "height": 128
-                                }
-                            },
-                            "editorType": "terminal",
-                            "active": false
-                        },
-                        {
-                            "type": "tab",
-                            "name": "tab5",
-                            "path": "",
-                            "className": [
-                                "tab5",
-                                "focus"
-                            ],
-                            "document": {
-                                "changed": false,
-                                "meta": {
-                                    "timestamp": 1449309849793
-                                },
-                                "filter": true,
-                                "title": "Terminal",
-                                "terminal": {
-                                    "id": "devel_124",
-                                    "cwd": "",
-                                    "width": 905,
-                                    "height": 128
-                                }
-                            },
-                            "editorType": "terminal",
-                            "active": true
-                        }
+                    "type": "tab",
+                    "name": "tab4",
+                    "path": "",
+                    "className": [
+                        "tab4"
                     ],
-                    "height": "26.47058823529412%",
-                    "skin": "editor_tab",
-                    "skinset": "default",
-                    "meta": {
-                        "accessList": [
-                            "tab5",
-                            "tab4",
-                            "tab1"
-                        ]
-                    }
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1449309425736
+                        },
+                        "filter": true,
+                        "title": "Terminal",
+                        "terminal": {
+                            "id": "devel_249",
+                            "cwd": "",
+                            "width": 777,
+                            "height": 551
+                        }
+                    },
+                    "editorType": "terminal",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab5",
+                    "path": "",
+                    "className": [
+                        "tab5",
+                        "focus"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1449309849793
+                        },
+                        "filter": true,
+                        "title": "Terminal",
+                        "terminal": {
+                            "id": "devel_124",
+                            "cwd": "",
+                            "width": 777,
+                            "height": 551
+                        }
+                    },
+                    "editorType": "terminal",
+                    "active": true
+                },
+                {
+                    "type": "tab",
+                    "name": "tab8",
+                    "path": "/dapp/contracts/RateEx.sol",
+                    "className": [
+                        "tab8"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1449220580011
+                        },
+                        "filter": true,
+                        "title": "RateEx.sol",
+                        "tooltip": "/dapp/contracts/RateEx.sol",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab9",
+                    "path": "/app/template/exchange.html",
+                    "className": [
+                        "tab9"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1449317599329
+                        },
+                        "filter": true,
+                        "title": "exchange.html",
+                        "tooltip": "/app/template/exchange.html",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab10",
+                    "path": "/app/template/main.html",
+                    "className": [
+                        "tab10"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {},
+                        "filter": true,
+                        "title": "main.html",
+                        "tooltip": "/app/template/main.html",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
                 }
             ],
-            "type": "vsplitbox"
+            "skin": "editor_tab",
+            "skinset": "default",
+            "type": "pane"
         }
     },
     "tree_selection": {
         "json()": [
-            "/app/css/style.css"
+            "/app/template/main.html"
         ]
+    }
+}   ]
     }
 }
