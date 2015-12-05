@@ -8,17 +8,17 @@
 
         return {
             rateCardCount: rateCardCount,
+            getRateForRateCard: getRateForRateCard,
             getRateCardDetails: getRateCardDetails,
             getAllRateCard: getAllRateCard,
             getQualityForRateCard: getQualityForRateCard,
             lowestRateForCountryCode: lowestRateForCountryCode,
             quote: quote,
-            addCall: addCall,
-            exchangeBalance: exchangeBalance
+            addCall: addCall
         };
 
-        function exchangeBalance() {
-            return ContractService.RateEx().with(defaultContext()).getBalance().then(function (res) {
+        function getRateForRateCard(rateCardAddress, countryCode) {
+            return ContractService.RateEx().with(defaultContext()).getRateForRateCard(rateCardAddress, countryCode).then(function (res) {
                 if (res) {
                     return res.toNumber();
                 }

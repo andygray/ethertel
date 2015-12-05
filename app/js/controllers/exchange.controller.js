@@ -20,20 +20,30 @@
             $log.debug('Found All RateCards', rateCards);
             vm.rateCards = rateCards;
             _.forEach(rateCards, function (rateCard) {
-                RateEx.getQualityForRateCard(rateCard.name)
+
+                RateEx.getQualityForRateCard(rateCard.address)
                     .then(function (quality) {
-                        $log.debug('quality for rate card', quality);
+                        // TODO can we use this on the frontend?
+                        rateCard.quality = quality;
                     });
+
+                _.forEach(SupportedDestinations, function (dest) {
+                    RateEx.getRateForRateCard(rateCard.address, dest.countryCode).then(function (rate) {
+                        _.defaults(rateCard, {
+                            destinations: {}
+                        });
+                        rateCard.destinations[dest.countryCode] = {
+                            rate: rate,
+                            countryCode: dest.countryCode,
+                            name: dest.name
+                        }
+                    });
+                });
             })
         });
 
-        // hmmm?
-        //RateEx.exchangeBalance().then(function (res) {
-        //    vm.exchangeBalance = res;
-        //});
-
         vm.destinations = [];
-        _.map(SupportedDestinations, function (dest) {
+        _.forEach(SupportedDestinations, function (dest) {
             RateEx.lowestRateForCountryCode(dest.countryCode).then(function (res) {
                 $log.debug('Rate for ' + dest.name, res.rate);
                 dest.rate = res.rate;

@@ -32,17 +32,12 @@
                     </div>
                     <div class="panel-content">
                         <p class="text-center">
-                            <span>UK</span>
-                            <span style="font-size: 150%">x</span>
+                        <span ng-repeat="destination in rateCard.destinations">
+                            <span>{{destination.name}} ({{destination.countryCode}})</span>
+                            <span style="font-size: 150%">{{destination.rate}}</span>
                             <span class="text-muted">WEI per SECOND</span>
                             <br/>
-                            <span>USA</span>
-                            <span style="font-size: 150%">x</span>
-                            <span class="text-muted">WEI per SECOND</span>
-                            <br/>
-                            <span>India</span>
-                            <span style="font-size: 150%">x</span>
-                            <span class="text-muted">WEI per SECOND</span>
+                        </span>
                         </p>
                     </div>
                     <div class="panel-footer">
