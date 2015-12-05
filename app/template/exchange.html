@@ -28,7 +28,7 @@
             <div ng-repeat="rateCard in ExchangeController.rateCards">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ rateCard.name }}</h3>
+                        <h3 class="panel-title">{{ ::rateCard.name }}</h3>
                     </div>
                     <div class="panel-content">
                         <br />
@@ -41,8 +41,8 @@
 
                         <p class="text-center">
                         <span ng-repeat="destination in rateCard.destinations">
-                            <span>{{destination.name}} ({{destination.countryCode}})</span>
-                            <span style="font-size: 150%">{{destination.rate}}</span>
+                            <span>{{::destination.name}} ({{::destination.countryCode}})</span>
+                            <span style="font-size: 150%">{{::destination.rate}}</span>
                             <span class="text-muted">WEI per SECOND</span>
                             <br/>
                         </span>
@@ -50,6 +50,7 @@
                     </div>
                     <div class="panel-footer">
                         <span class="text-muted">Domain:</span> {{ ::rateCard.domain }}
+                        <span class="text-muted">Quality:</span> {{ ::rateCard.quality }}
                     </div>
                 </div>
             </div>
