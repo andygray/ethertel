@@ -50,16 +50,15 @@
                     <h4>Telephone Number: {{ ::PayphoneController.telephoneNumber }}</h4>
                     <h4>Estimate Mins: {{ ::PayphoneController.estimatedMins }}</h4>
                     <h4>Estimate: {{ ::PayphoneController.myQuote.estimatedAmountInWei }} WEI</h4>
-                    <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard)
-                        }}</h4>
+                    <h4>Rate Card: {{ ::PayphoneController.getPrettyRateCard(PayphoneController.myQuote.rateCard) }}</h4>
                     <h4>Rate: {{ ::PayphoneController.myQuote.rate }} WEI per Second</h4>
                     <!--<h4>Quality: <span class="badge">{{ ::PayphoneController.quality }}</span></h4>-->
                 </div>
-                <div class="form-group" ng-show="PayphoneController.isAnonymous">
-                    <input ng-model="PayphoneController.seed" type="password" class="form-control"
-                           placeholder="Input seed phrase ...">
-                    <button ng-click="PayphoneController.login()">Sign</button>
-                </div>
+                <!--<div class="form-group" ng-show="PayphoneController.isAnonymous">-->
+                    <!--<input ng-model="PayphoneController.seed" type="password" class="form-control"-->
+                           <!--placeholder="Input seed phrase ...">-->
+                    <!--<button ng-click="PayphoneController.login()">Sign</button>-->
+                <!--</div>-->
                 <h4 ng-show="!PayphoneController.isAnonymous">
                     <input ng-model="PayphoneController.weiValue" type="number"/>
                     <button class="makeCall" ng-click="PayphoneController.addCall()">Call</button>
