@@ -2,11 +2,11 @@
 <div id="phoneWrapper">
     <div ng-if="PayphoneController.destinations && !PayphoneController.myQuote && !PayphoneController.callQuoting">
         <select ng-options="dest.countryCode as dest.name for dest in PayphoneController.destinations"
-                ng-model="PayphoneController.countryCode" class="buttonStyle">
+                ng-model="PayphoneController.countryCode" class="buttonStyle" required>
             <option value="" selected disabled> Select Country</option>
         </select>
 
-        <div ng-if="PayphoneController.countryCode">
+        <div>
             <form name="quoteForm" novalidate>
                 <div id="fullTelNumber">
                     <div id="diallingCode">+{{ PayphoneController.countryCode }}</div>
@@ -102,13 +102,18 @@
     </div>
 </div>
 </div>
-<div class="col-sm-6">
-<h3>Attempted Calls</h3>
-<div ng-repeat="ac in PayphoneController.attemptedCalls" class="text-center">
-{{ ::ac.timestamp * 1000 | date }} +{{ ::ac.countryCode }} {{ ::ac.telephoneNumber }} <span class="text-muted">rate/rate card</span>
-{{ ::ac.rate }} {{ ::PayphoneController.getPrettyRateCard(ac.rateCard) }}
-</div>
-</div>
+
+           <div class="col-sm-6 attemptedCallContainer">
+            <h3>Attempted Calls</h3>
+
+            <div ng-repeat="ac in PayphoneController.attemptedCalls" class="attemptedCallTable">
+                <div class="time"><span class="headerRow">Time: </span>{{ ::ac.timestamp * 1000 | date }}</div>
+                <div class="countryCode"><span class="headerRow">Country Code: </span>{{ ::ac.countryCode }}</div>
+                <div class="telephoneNumber"><span class="headerRow">Telephone: </span>{{ ::ac.telephoneNumber }}</div>
+                <div class="rate"><span class="headerRow">Rate: </span>{{ ::ac.rate }}</div>
+                <div class="rateCard"><span class="headerRow">Rate Card: </span>{{ ::PayphoneController.getPrettyRateCard(ac.rateCard) }}</div>
+            </div>
+        </div>
     
 
 

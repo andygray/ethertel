@@ -12,12 +12,25 @@
 </head>
 
 <body ng-app="mbApp">
+    
+<div id="navigationBar">
+    
+    <div id="brand">EtherTel</div>
+    <div id="navlinks">
+        <ul>
+            <li> <a href="#/">Home</a> </li>
+             <li><a href="#/exchange">Exchange</a></li>
+              <li></li>
+        </ul>
+        
+    </div>
+    
+</div>    
 
 <div ng-view class="view-frame"></div>
 
 <footer ng-controller="AuthController" class="mb-page pull-right" style="padding-right: 50px;">
-    <a href="#/">Home</a>
-    | <a href="#/exchange">Exchange</a>
+   
     <span ng-if="!isAnonymous">| <a href="" ng-click="logout()">Log out</a> {{ address }}</span>
 </footer>
 
