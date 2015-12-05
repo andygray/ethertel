@@ -27,3 +27,6 @@ EOF
 ```
 
 
+seed “andy” is a customer?
+seed ‘gltd’ is a rate card supplier
+
