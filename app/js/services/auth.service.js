@@ -32,7 +32,7 @@
 
         function autologin(auth) {
             console.log('Auto login seed=[%s] address=[%s]', auth.seedHash, auth.address);
-            
+
             $cookies.put('auth:seedHash', auth.seedHash);
             $cookies.put('auth:address', auth.address);
 
@@ -96,7 +96,6 @@
             if (this.isAnonymous()) {
                 return 0;
             }
-
             return Web3Service.eth.getBalance(this.getAddress()).toNumber();
         }
     }

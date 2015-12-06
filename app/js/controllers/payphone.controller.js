@@ -88,7 +88,7 @@
         var event = ContractService.RateEx().original.CompletedCallTx({}, {fromBlock: 0, toBlock: 'latest'});
         event.watch(function (error, result) {
             if (!error) {
-                console.log(result.args);
+                //console.log(result.args);
                 if (result.args.caller === vm.address) {
                     vm.completedCalls.push({
                         caller: result.args.caller,

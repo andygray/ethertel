@@ -4,29 +4,35 @@
     <div class="row">
         <div class="col-sm-12">
 
-            <h3>Completed Calls</h3>
 
-            <div ng-repeat="ac in ProviderManageController.completedCalls" class="attemptedCallTable">
-                <div class="time"><span class="headerRow">Time: </span>{{ ::ac.timestamp * 1000 | date }}</div>
-                <div class="countryCode"><span class="headerRow">Country Code: </span>{{ ::ac.countryCode }}</div>
-                <div class="telephoneNumber"><span class="headerRow">Telephone: </span>{{ ::ac.telephoneNumber }}</div>
-                <div class="rate"><span class="headerRow">Rate: </span>{{ ::ac.rate }}</div>
-                <div class="rateCard"><span class="headerRow">Rate Card: </span>{{ ::ProviderManageController.getPrettyRateCard(ac.rateCard) }}</div>
-                <div class="rate"><span class="headerRow">Amount Sent In Wei: </span>{{ ::ac.amountInWei }}</div>
-                <div class="rate"><span class="headerRow">Call Seconds: </span>{{ ::ac.callInSeconds }}</div>
-                <div class="rate"><span class="headerRow">Total Cost In Wei: </span>{{ ::ac.costInWei }}</div>
-                <div class="rate"><span class="headerRow">Refund In Wei: </span>{{ ::ac.refundInWei }}</div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Attempted Calls</h3>
+                    <div ng-repeat="ac in ProviderManageController.attemptedCalls" class="attemptedCallTable">
+                        <div class="time"><span class="headerRow">Time: </span>{{ ::ac.timestamp * 1000 | date }}</div>
+                        <div class="countryCode"><span class="headerRow">Country Code: </span>{{ ::ac.countryCode }}</div>
+                        <div class="telephoneNumber"><span class="headerRow">Telephone: </span>{{ ::ac.telephoneNumber }}</div>
+                        <div class="rate"><span class="headerRow">Rate: </span>{{ ::ac.rate }}</div>
+                        <div class="rateCard"><span class="headerRow">Rate Card: </span>{{ ::ProviderManageController.getPrettyRateCard(ac.rateCard)}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Completed Calls</h3>
+                    <div ng-repeat="ac in ProviderManageController.completedCalls" class="attemptedCallTable">
+                        <div class="time"><span class="headerRow">Time: </span>{{ ::ac.timestamp * 1000 | date }}</div>
+                        <div class="countryCode"><span class="headerRow">Country Code: </span>{{ ::ac.countryCode }}</div>
+                        <div class="telephoneNumber"><span class="headerRow">Telephone: </span>{{ ::ac.telephoneNumber }}</div>
+                        <div class="rate"><span class="headerRow">Rate: </span>{{ ::ac.rate }}</div>
+                        <div class="rateCard"><span class="headerRow">Rate Card: </span>{{ ::ProviderManageController.getPrettyRateCard(ac.rateCard)}}</div>
+                        <div class="rate"><span class="headerRow">Amount Sent In Wei: </span>{{ ::ac.amountInWei }}</div>
+                        <div class="rate"><span class="headerRow">Call Seconds: </span>{{ ::ac.callInSeconds }}</div>
+                        <div class="rate"><span class="headerRow">Total Cost In Wei: </span>{{ ::ac.costInWei }}</div>
+                        <div class="rate"><span class="headerRow">Refund In Wei: </span>{{ ::ac.refundInWei }}</div>
+                    </div>
+                </div>
             </div>
 
-            <h3>Attempted Calls</h3>
-
-            <div ng-repeat="ac in ProviderManageController.attemptedCalls" class="attemptedCallTable">
-                <div class="time"><span class="headerRow">Time: </span>{{ ::ac.timestamp * 1000 | date }}</div>
-                <div class="countryCode"><span class="headerRow">Country Code: </span>{{ ::ac.countryCode }}</div>
-                <div class="telephoneNumber"><span class="headerRow">Telephone: </span>{{ ::ac.telephoneNumber }}</div>
-                <div class="rate"><span class="headerRow">Rate: </span>{{ ::ac.rate }}</div>
-                <div class="rateCard"><span class="headerRow">Rate Card: </span>{{ ::ProviderManageController.getPrettyRateCard(ac.rateCard) }}</div>
-            </div>
 
         </div>
     </div>

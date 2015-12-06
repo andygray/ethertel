@@ -19,7 +19,9 @@
             getAllCalls: getAllCalls,
             getAllCallsForProvider: getAllCallsForProvider,
             getCallDetailsForIndex: getCallDetailsForIndex,
-            numberOfCalls: numberOfCalls
+            numberOfCalls: numberOfCalls,
+            completeCall: completeCall,
+            validateCall: validateCall
         };
 
         function getBalance() {
@@ -33,6 +35,19 @@
             return this.getAllCalls().then(function (allCalls) {
                 // TODO this should use {rateCard: rateCardAddress} - could be a bug?
                 return _.filter(allCalls, {caller: rateCardAddress});
+            });
+        }
+
+        function validateCall(cHash) {
+            return ContractService.RateEx().with(defaultContext()).validateCall(cHash).then(function (res) {
+                // returns = uint maxInSeconds, uint countryCode, uint amountInWei
+                return res;
+            });
+        }
+
+        function completeCall(cHash, callInSeconds) {
+            return ContractService.RateEx().with(defaultContext()).completeCall(cHash, callInSeconds).then(function (res) {
+                return res;
             });
         }
 
