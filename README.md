@@ -1,5 +1,9 @@
 # EtherTel
 
+## Demo
+
+http://ethertel.on.ether.camp:8080/#/
+
 ## Why?
 
 In the advent of SIP and VOIP the cost of communication has fallen significantly. Users are able to find cheap and often free means with which to communicate. 
@@ -64,9 +68,29 @@ User can use normal ethereum wallet to fund account and calls.
 
 Provider can use normal ethereum wallet to withdraw cleared funds.
 
+## Use-case
 
-## Demo
+Call the White House with you estimated mins:
 
-http://ethertel.on.ether.camp:8080/#/
+![Phone](https://github.com/andygray/ethertel/blob/master/screenshots/phone.png)
+
+Get a quote from the lowest provider on the exchange and send the wei to initiate:
+![Quote](https://github.com/andygray/ethertel/blob/master/screenshots/quote.png)
+
+Receive a receipt for the call (and your phone would ring!):
+![Receipt](https://github.com/andygray/ethertel/blob/master/screenshots/receipt.png)
+
+Provider would see the call transaction:
+![Call](https://github.com/andygray/ethertel/blob/master/screenshots/providerCall.png)
+
+Provider can validate a transaction and discover the seconds to allow for the call (based on the quoted rate):
+![Validate](https://github.com/andygray/ethertel/blob/master/screenshots/validate.png)
+
+Once the call is complete Provider would confirm the amount of seconds the call took, the caller would receive any refund and the Provider gets their ether for the call:
+![Complete](https://github.com/andygray/ethertel/blob/master/screenshots/complete.png)
+![Balance](https://github.com/andygray/ethertel/blob/master/screenshots/balance.png)
+
+
+
 
 
