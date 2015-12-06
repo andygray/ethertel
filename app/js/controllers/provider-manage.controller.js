@@ -27,6 +27,7 @@
                 vm.pageConfig.loadingCalls = false;
             });
         }, 1000);
+        vm.balance = Web3Service.eth.getBalance('0xdf315f7485c3a86eb692487588735f224482abe3').toNumber();
 
         var loadedRateCards = [];
         RateEx.getAllRateCard().then(function (rateCards) {
@@ -36,12 +37,6 @@
         // FIXME This seems to not match as well....? something strange going on
         this.getPrettyRateCard = function (hash) {
             return _.get(_.find(loadedRateCards, {address: hash}), 'name', 'n/a');
-        };
-
-        // FIXME = TODO add - getBalance()
-        this.balance = function (address) {
-            // beta
-            Web3Service.eth.getBalance('0xdf315f7485c3a86eb692487588735f224482abe3').toNumber();
         };
 
         this.validateCall = function (call) {
