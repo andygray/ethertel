@@ -15,10 +15,15 @@
         vm.attemptedCalls = [];
         vm.completedCalls = [];
 
+        vm.pageConfig  ={
+            loadingCalls: true
+        };
+
         RateEx.getAllCallsForProvider(AuthService.getClientInfo().address).then(function (getAllCalls) {
             console.log('getAllCalls', getAllCalls);
             // TODO tmp set on completed
             vm.completedCalls = getAllCalls;
+            vm.pageConfig.loadingCalls = false;
         });
 
         var loadedRateCards = [];
@@ -36,7 +41,7 @@
         this.validateCall = function (call) {
             
             // force it
-            AuthService.login('beta');
+            AuthService.login(AuthService.getClientInfo().address);
             
             RateEx.validateCall(call.callHash).then(function (res) {
                 console.log('validateCall', call, res);
@@ -47,7 +52,7 @@
         this.completeCall = function (call, completedCallAmount) {
             
             // force it
-            AuthService.login('beta');
+            AuthService.login(AuthService.getClientInfo().address);
             
             RateEx.completeCall(call.callHash, completedCallAmount).then(function (res) {
                 console.log('completeCall', call, completedCallAmount, res);

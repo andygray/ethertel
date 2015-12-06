@@ -4,6 +4,24 @@
     <div class="row">
         <div class="col-sm-12">
 
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div ng-if="ProviderManageController.pageConfig.loadingCalls">
+                        <div class="text-center loading">
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                        </div>
+                    </div>
+
+                    <div ng-if="!ProviderManageController.pageConfig.loadingCalls && ProviderManageController.completedCalls.length == 0">
+                        <div class="alert alert-success">
+                            No Calls Found For provider {{ProviderManageController.loggedInProvider.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-sm-6">
