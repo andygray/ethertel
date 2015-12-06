@@ -26,7 +26,7 @@
                 vm.completedCalls = getAllCalls;
                 vm.pageConfig.loadingCalls = false;
             });
-        }, 500);
+        }, 1000);
 
         var loadedRateCards = [];
         RateEx.getAllRateCard().then(function (rateCards) {
