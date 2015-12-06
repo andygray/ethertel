@@ -36,7 +36,7 @@
                                 <span class="text-muted">Quality:</span> <span class="badge">{{ ::rateCard.quality }}</span>
 
                                 <button class="btn-link"
-                                        ng-show="rateCard.name"
+                                        ng-show="rateCard.name === 'beta'"
                                         ng-click="ProvidersController.login(rateCard)">login
                                 </button>
                             </div>

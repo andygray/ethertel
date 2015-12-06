@@ -5,7 +5,7 @@
     mbApp.controllers.controller('ProviderManageController', ProviderManageController);
 
     // EventService needed to hook up events!
-    function ProviderManageController($log, $timeout, _, AuthService, RateEx, RateExEvents, ContractService) {
+    function ProviderManageController($log, $timeout, _, AuthService, RateEx, RateExEvents, ContractService, Web3Service) {
 
         var vm = this;
 
@@ -39,6 +39,10 @@
         };
 
         // FIXME = TODO add - getBalance()
+        this.balance = function (address) {
+            // beta
+            Web3Service.eth.getBalance('0xdf315f7485c3a86eb692487588735f224482abe3').toNumber();
+        };
 
         this.validateCall = function (call) {
 
@@ -59,12 +63,6 @@
             RateEx.completeCall(call.callHash, completedCallAmount).then(function (res) {
                 console.log('completeCall', call, completedCallAmount, res);
                 call.completedData = res;
-
-                // refresh
-                RateEx.getAllCallsForProvider(AuthService.getClientInfo().address).then(function (getAllCalls) {
-                    console.log('getAllCalls', getAllCalls);
-                    vm.completedCalls = getAllCalls;
-                });
             });
         };
 
