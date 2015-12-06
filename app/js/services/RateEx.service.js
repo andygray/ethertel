@@ -24,12 +24,12 @@
             validateCall: validateCall
         };
 
-        //function getBalance() {
-        //    return ContractService.RateEx().with(defaultContext()).getBalance().then(function (res) {
-        //        // TODO andy - what should this be? - value = 0xffeab73bc133387b122fbb83604f34acf915ac8ce74d5cfb86ad66fd403feb64
-        //        return res ? res : 0;
-        //    });
-        //}
+        function getBalance() {
+            return ContractService.RateEx().with(defaultContext()).getBalance().then(function (res) {
+                // TODO andy - what should this be? - value = 0xffeab73bc133387b122fbb83604f34acf915ac8ce74d5cfb86ad66fd403feb64
+                return res ? res : 0;
+            });
+        }
 
         function getAllCallsForProvider(rateCardAddress) {
             return this.getAllCalls().then(function (allCalls) {
@@ -212,13 +212,6 @@
                         return res;
                     }
                 });
-        }
-
-        function getBalance(address) {
-            if (this.isAnonymous()) {
-                return 0;
-            }
-            return Web3Service.eth.getBalance(address).toNumber();
         }
 
         function defaultContext() {

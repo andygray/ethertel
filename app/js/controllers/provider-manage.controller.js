@@ -15,6 +15,8 @@
         vm.attemptedCalls = [];
         vm.completedCalls = [];
 
+        vm.balance = Web3Service.eth.getBalance('0xdf315f7485c3a86eb692487588735f224482abe3').toNumber();
+
         RateEx.getAllCallsForProvider(AuthService.getClientInfo().address).then(function (getAllCalls) {
             console.log('getAllCalls', getAllCalls);
             // TODO tmp set on completed
@@ -29,12 +31,6 @@
         // FIXME This seems to not match as well....? something strange going on
         this.getPrettyRateCard = function (hash) {
             return _.get(_.find(loadedRateCards, {address: hash}), 'name', 'n/a');
-        };
-
-        // FIXME = TODO add - getBalance()
-        this.balance = function (address) {
-            // beta
-            Web3Service.eth.getBalance('0xdf315f7485c3a86eb692487588735f224482abe3').toNumber();
         };
 
         this.validateCall = function (call) {
