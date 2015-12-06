@@ -8,9 +8,9 @@
                     <h3>All Rate Providers <span class="badge">{{ ProvidersController.rateCardCount || 0 }}</span></h3>
                     <hr/>
                     <div class="col-sm-6" ng-repeat="rateCard in ProvidersController.rateCards">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">{{ ::rateCard.name }}</h3>
+                        <div class="panel panelProvider">
+                            <div class="panel-heading providerHead">
+                                <h3 class="panel-title providerPane">{{ ::rateCard.name }}</h3>
                             </div>
                             <div class="panel-content">
                                 <br/>

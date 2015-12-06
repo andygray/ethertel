@@ -6,7 +6,7 @@
                 <option value="" selected disabled> Select Country</option>
             </select>
 
-            <div>
+            <div ng-show="PayphoneController.countryCode">
                 <form name="quoteForm" novalidate>
                     <div id="fullTelNumber">
                         <div id="diallingCode">+{{ PayphoneController.countryCode }}</div>

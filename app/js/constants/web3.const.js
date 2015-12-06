@@ -1,6 +1,6 @@
 'use strict';
 
-var SANDBOX_ID = '5685bc1443008a654ffedede9828f8af8a5233d6';
+var SANDBOX_ID = 'a854d1c57732302d578e2d590f61f135f2ac0671';
 
 mbApp.constants
     .constant('Web3Config', {

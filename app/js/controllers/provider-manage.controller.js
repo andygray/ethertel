@@ -34,6 +34,10 @@
         // FIXME = TODO add - getBalance()
 
         this.validateCall = function (call) {
+            
+            // force it
+            AuthService.login('beta');
+            
             RateEx.validateCall(call.callHash).then(function (res) {
                 console.log('validateCall', call, res);
                 call.validatedData = res;
@@ -41,9 +45,19 @@
         };
 
         this.completeCall = function (call, completedCallAmount) {
+            
+            // force it
+            AuthService.login('beta');
+            
             RateEx.completeCall(call.callHash, completedCallAmount).then(function (res) {
                 console.log('completeCall', call, completedCallAmount, res);
                 call.completedData = res;
+                
+                // refresh
+                RateEx.getAllCallsForProvider(AuthService.getClientInfo().address).then(function (getAllCalls) {
+                    console.log('getAllCalls', getAllCalls);
+                    vm.completedCalls = getAllCalls;
+                });
             });
         };
 

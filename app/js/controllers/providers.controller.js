@@ -10,7 +10,7 @@
         var vm = this;
 
         this.login = function (rateCard) {
-            AuthService.login(rateCard.name);
+            AuthService.login('beta');
         };
 
         var loginListener = $scope.$on('auth:login', function () {

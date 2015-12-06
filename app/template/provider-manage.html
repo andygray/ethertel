@@ -36,10 +36,11 @@
                                 <button class="btn btn-sm" ng-click="ProviderManageController.validateCall(ac)">Validate Call</button>
                             </div>
                             <div class="form-group pull-right">
+                                                    <input ng-model="completedCallAmount"
+                                       style="max-width: 130px; height: 35px" />
                                 <button class="btn btn-sm"
                                         ng-click="ProviderManageController.completeCall(ac, completedCallAmount)">Complete Call</button>
-                                <input ng-model="completedCallAmount"
-                                       style="max-width: 130px; height: 35px" />
+            
                             </div>
                         </form>
                         <br />
