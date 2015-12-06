@@ -93,6 +93,9 @@ Once the call is complete Provider would confirm the amount of seconds the call 
 Providers rates:
 ![Providers](https://github.com/andygray/ethertel/blob/master/screenshots/providers.png)
 
+Exchange where Provider compete for business:
+![Exchange](https://github.com/andygray/ethertel/blob/master/screenshots/exchange.png)
+
 
 
 
