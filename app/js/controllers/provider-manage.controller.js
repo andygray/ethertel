@@ -5,7 +5,7 @@
     mbApp.controllers.controller('ProviderManageController', ProviderManageController);
 
     // EventService needed to hook up events!
-    function ProviderManageController($log, _, AuthService, RateEx, RateExEvents, ContractService) {
+    function ProviderManageController($log, $timeout, _, AuthService, RateEx, RateExEvents, ContractService) {
 
         var vm = this;
 

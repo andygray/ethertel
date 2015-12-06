@@ -5,7 +5,7 @@
     mbApp.controllers.controller('ProvidersController', ProvidersController);
 
     // EventService needed to hook up events!
-    function ProvidersController($log, $scope, $location, _, AuthService, RateEx, SupportedDestinations, RateExEvents) {
+    function ProvidersController($log, $scope, $timeout, $location, _, AuthService, RateEx, SupportedDestinations, RateExEvents) {
 
         var vm = this;
 
@@ -13,8 +13,12 @@
             AuthService.login(rateCard.name);
         };
 
-        $scope.$on('auth:login', function () {
+        var loginListener = $scope.$on('auth:login', function () {
             $location.path('/provider-manage');
+        });
+
+        $scope.$on('$destroy', function () {
+            loginListener();
         });
 
         RateEx.rateCardCount().then(function (res) {
@@ -29,7 +33,6 @@
 
                 RateEx.getQualityForRateCard(rateCard.address)
                     .then(function (quality) {
-                        // TODO can we use this on the frontend?
                         rateCard.quality = quality;
                     });
 
