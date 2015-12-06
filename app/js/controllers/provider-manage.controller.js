@@ -31,7 +31,16 @@
             return _.get(_.find(loadedRateCards, {address: hash}), 'name', 'n/a');
         };
 
-        // FIXME = getBalance()
+        // FIXME = TODO add - getBalance()
+
+        this.validateCall = function (call) {
+            console.log('validateCall', call);
+        };
+
+        this.completeCall = function (call, completedCallAmount) {
+            console.log('completeCall', call, completedCallAmount);
+
+        };
 
     }
 
