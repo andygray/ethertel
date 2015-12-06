@@ -75,10 +75,10 @@ contract RateEx is owned, named("RateEx") {
         return rateCards.length;
     }
     
-    function getRateCardDetails(uint index) constant returns (address cardAddress, bytes32 name, bytes32 domain) {
+    function getRateCardDetails(uint index) constant returns (address cardAddress, bytes32 name, bytes32 domain, address owner) {
         if (rateCards[index] == 0x0) throw;
 
-        return (rateCards[index], RateCard(rateCards[index]).name(), RateCard(rateCards[index]).domain());    
+        return (rateCards[index], RateCard(rateCards[index]).name(), RateCard(rateCards[index]).domain(), RateCard(rateCards[index]).owner());
     }
     
     // really should access RateCard direct

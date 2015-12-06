@@ -6,6 +6,8 @@
 
     function AuthController($rootScope, $scope, $location, authService) {
 
+        authService.login('andy');
+
         _.extend($scope, {
             isAnonymous: authService.isAnonymous(),
             address: authService.getAddress(),

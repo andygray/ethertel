@@ -15,12 +15,100 @@
             getQualityForRateCard: getQualityForRateCard,
             lowestRateForCountryCode: lowestRateForCountryCode,
             quote: quote,
-            addCall: addCall
+            addCall: addCall,
+            getAllCalls: getAllCalls,
+            getAllCallsForProvider: getAllCallsForProvider,
+            getCallDetailsForIndex: getCallDetailsForIndex,
+            numberOfCalls: numberOfCalls,
+            completeCall: completeCall,
+            validateCall: validateCall
         };
 
         function getBalance() {
             return ContractService.RateEx().with(defaultContext()).getBalance().then(function (res) {
-                // TODO andy - what should this b? - value = 0xffeab73bc133387b122fbb83604f34acf915ac8ce74d5cfb86ad66fd403feb64
+                // TODO andy - what should this be? - value = 0xffeab73bc133387b122fbb83604f34acf915ac8ce74d5cfb86ad66fd403feb64
+                return res ? res : 0;
+            });
+        }
+
+        function getAllCallsForProvider(rateCardAddress) {
+            return this.getAllCalls().then(function (allCalls) {
+                // TODO this should use {rateCard: rateCardAddress} - could be a bug?
+                return _.filter(allCalls, {caller: rateCardAddress});
+            });
+        }
+
+        function validateCall(cHash) {
+            return ContractService.RateEx().with(defaultContext()).validateCall(cHash).then(function (res) {
+                // returns = uint maxInSeconds, uint countryCode, uint amountInWei
+                return {
+                    maxInSeconds: res[0].toNumber(),
+                    countryCode: res[1].toNumber(),
+                    amountInWei: res[2].toNumber()
+                };
+            });
+        }
+
+        function completeCall(cHash, callInSeconds) {
+            return ContractService.RateEx().with(defaultContext()).completeCall(cHash, callInSeconds).then(function (res) {
+                return res;
+            });
+        }
+
+        function getAllCalls() {
+            return this.numberOfCalls()
+                .then(function (count) {
+
+                    var resolves = _.chain(0).range(count)
+                        .value()
+                        .map(this.getCallDetailsForIndex);
+
+                    return $q.all(resolves)
+                        .then(function (results) {
+                            return _.map(results, function (rawCall, index) {
+                                return {
+                                    index: index,
+                                    caller: rawCall[0],
+                                    rateCard: rawCall[1],
+                                    countryCode: rawCall[2].toNumber(),
+                                    telephoneNumber: rawCall[3].toNumber(),
+                                    timestamp: rawCall[4].toNumber(),
+                                    amountInWei: rawCall[5].toNumber(),
+                                    rate: rawCall[6].toNumber(),
+                                    maxInSeconds: rawCall[7].toNumber(),
+                                    callInSeconds: rawCall[8].toNumber(),
+                                    costInWei: rawCall[9].toNumber(),
+                                    refundInWei: rawCall[10].toNumber(),
+                                    completed: rawCall[11],
+                                    quality: rawCall[12].toNumber(),
+                                    callHash: rawCall[13]
+                                };
+                            });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                            return [];
+                        })
+
+                }.bind(this));
+        }
+
+        function getCallDetailsForIndex(index) {
+            return ContractService.RateEx().with(defaultContext()).calls(index).then(function (res) {
+                return res;
+            });
+        }
+
+        function numberOfCalls() {
+            return ContractService.RateEx().with(defaultContext()).numberOfCalls().then(function (res) {
+                if (res) {
+                    return res.toNumber();
+                }
+            });
+        }
+
+        function lengthOfTotalCalls() {
+            return ContractService.RateEx().with(defaultContext()).lengthOfTotalCalls().then(function (res) {
                 return res ? res : 0;
             });
         }

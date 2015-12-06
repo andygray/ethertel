@@ -466,6 +466,10 @@ mbApp.constants
                         {
                             "name": "domain",
                             "type": "bytes32"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address"
                         }
                     ],
                     "type": "function"
