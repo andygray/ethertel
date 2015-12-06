@@ -16,9 +16,9 @@
             isAnonymous: isAnonymous,
             isAuthorized: isAuthorized,
             isAuthentificated: isAuthentificated,
-            
+
             isOwner: isOwner,
-            
+
             getAddress: getAddress,
             getSeedHash: getSeedHash,
             getClientInfo: getClientInfo,
@@ -31,11 +31,13 @@
         }
 
         function autologin(auth) {
+            console.log('Auto login seed=[%s] address=[%s]', auth.seedHash, auth.address);
+            
             $cookies.put('auth:seedHash', auth.seedHash);
             $cookies.put('auth:address', auth.address);
 
             $rootScope.$broadcast('auth:login', auth);
-            
+
             return auth.address;
         }
 
@@ -47,7 +49,7 @@
         }
 
         function isAuthorized() {
-            
+
         }
 
         function isAdmin() {
