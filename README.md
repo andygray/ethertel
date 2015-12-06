@@ -90,6 +90,8 @@ Once the call is complete Provider would confirm the amount of seconds the call 
 ![Complete](https://github.com/andygray/ethertel/blob/master/screenshots/complete.png)
 ![Balance](https://github.com/andygray/ethertel/blob/master/screenshots/balance.png)
 
+Providers rates:
+![Providers](https://github.com/andygray/ethertel/blob/master/screenshots/providers.png)
 
 
 
