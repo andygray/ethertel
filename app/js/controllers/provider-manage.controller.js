@@ -43,7 +43,7 @@
         this.validateCall = function (call) {
 
             // force it
-            AuthService.login(AuthService.getClientInfo().address);
+            AuthService.login('beta');
 
             RateEx.validateCall(call.callHash).then(function (res) {
                 console.log('validateCall', call, res);
@@ -54,7 +54,7 @@
         this.completeCall = function (call, completedCallAmount) {
 
             // force it
-            AuthService.login(AuthService.getClientInfo().address);
+            AuthService.login('beta');
 
             RateEx.completeCall(call.callHash, completedCallAmount).then(function (res) {
                 console.log('completeCall', call, completedCallAmount, res);
