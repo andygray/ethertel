@@ -5,7 +5,7 @@
     mbApp.controllers.controller('ProviderManageController', ProviderManageController);
 
     // EventService needed to hook up events!
-    function ProviderManageController($log, $timeout, _, AuthService, RateEx, RateExEvents, ContractService) {
+    function ProviderManageController($log, $timeout, _, AuthService, RateEx, RateExEvents, ContractService, Web3Service) {
 
         var vm = this;
 
@@ -15,11 +15,19 @@
         vm.attemptedCalls = [];
         vm.completedCalls = [];
 
-        RateEx.getAllCallsForProvider(AuthService.getClientInfo().address).then(function (getAllCalls) {
-            console.log('getAllCalls', getAllCalls);
-            // TODO tmp set on completed
-            vm.completedCalls = getAllCalls;
-        });
+        vm.pageConfig = {
+            loadingCalls: true
+        };
+
+        $timeout(function () {
+            RateEx.getAllCallsForProvider(AuthService.getClientInfo().address).then(function (getAllCalls) {
+                console.log('getAllCalls', getAllCalls);
+                // TODO tmp set on completed
+                vm.completedCalls = getAllCalls;
+                vm.pageConfig.loadingCalls = false;
+            });
+        }, 1000);
+        vm.balance = Web3Service.eth.getBalance('0xdf315f7485c3a86eb692487588735f224482abe3').toNumber();
 
         var loadedRateCards = [];
         RateEx.getAllRateCard().then(function (rateCards) {
@@ -31,13 +39,11 @@
             return _.get(_.find(loadedRateCards, {address: hash}), 'name', 'n/a');
         };
 
-        // FIXME = TODO add - getBalance()
-
         this.validateCall = function (call) {
-            
+
             // force it
             AuthService.login('beta');
-            
+
             RateEx.validateCall(call.callHash).then(function (res) {
                 console.log('validateCall', call, res);
                 call.validatedData = res;
@@ -45,19 +51,13 @@
         };
 
         this.completeCall = function (call, completedCallAmount) {
-            
+
             // force it
             AuthService.login('beta');
-            
+
             RateEx.completeCall(call.callHash, completedCallAmount).then(function (res) {
                 console.log('completeCall', call, completedCallAmount, res);
                 call.completedData = res;
-                
-                // refresh
-                RateEx.getAllCallsForProvider(AuthService.getClientInfo().address).then(function (getAllCalls) {
-                    console.log('getAllCalls', getAllCalls);
-                    vm.completedCalls = getAllCalls;
-                });
             });
         };
 
