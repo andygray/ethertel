@@ -1,5 +1,13 @@
 # EtherTel
 
+## Demo
+
+http://ethertel.on.ether.camp:8080/#/
+
+## Use-case
+
+![Phone](https://github.com/andygray/ethertel/blob/master/screenshots/phone.png)
+
 ## Why?
 
 In the advent of SIP and VOIP the cost of communication has fallen significantly. Users are able to find cheap and often free means with which to communicate. 
@@ -65,8 +73,7 @@ User can use normal ethereum wallet to fund account and calls.
 Provider can use normal ethereum wallet to withdraw cleared funds.
 
 
-## Demo
 
-http://ethertel.on.ether.camp:8080/#/
+
 
 
