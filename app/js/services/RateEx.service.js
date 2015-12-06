@@ -41,7 +41,11 @@
         function validateCall(cHash) {
             return ContractService.RateEx().with(defaultContext()).validateCall(cHash).then(function (res) {
                 // returns = uint maxInSeconds, uint countryCode, uint amountInWei
-                return res;
+                return {
+                    maxInSeconds: res[0].toNumber(),
+                    countryCode: res[1].toNumber(),
+                    amountInWei: res[2].toNumber()
+                };
             });
         }
 

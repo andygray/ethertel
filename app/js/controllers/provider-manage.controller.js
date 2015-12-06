@@ -34,12 +34,17 @@
         // FIXME = TODO add - getBalance()
 
         this.validateCall = function (call) {
-            console.log('validateCall', call);
+            RateEx.validateCall(call.callHash).then(function (res) {
+                console.log('validateCall', call, res);
+                call.validatedData = res;
+            });
         };
 
         this.completeCall = function (call, completedCallAmount) {
-            console.log('completeCall', call, completedCallAmount);
-
+            RateEx.completeCall(call.callHash, completedCallAmount).then(function (res) {
+                console.log('completeCall', call, completedCallAmount, res);
+                call.completedData = res;
+            });
         };
 
     }
